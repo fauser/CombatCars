@@ -1,0 +1,50 @@
+﻿<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <a href="~/">ASP.NET Web API</a>
+            </p>
+        </div>
+    </div>
+</header>
+<div id="body">
+    <ul id="cars"></ul>
+
+    <form id="saveCarForm" method="post">
+        <h3>Create a new Car</h3>
+        <p>
+            <label for="carId">Car Id:</label>
+            <input type="text" name="Id" />
+        </p>
+        <p>
+            <label for="carName">Car Name:</label>
+            <input type="text" name="Name" />
+        </p>
+        <input type="button" id="saveCar" value="Save" />
+    </form>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $.getJSON('/api/vehicle', function (contactsJsonPayload) {
+                $(contactsJsonPayload).each(function (i, item) {
+                    $('#cars').append('<li>' + item.Id + " - " + item.Name + '</li>');
+                });
+            });
+        });
+
+        $('#saveCar').click(function () {
+            var nm = $('#carName').val();
+            var id = $('#carId').val();
+
+            $.post("api/vehicle",
+                  $("#saveCarForm").serialize(),
+                  function (value) {
+                      $('#cars').append('<li>' + value.Id + " - " + value.Name + '</li>');
+                  },
+                  "json"
+            );
+        });
+    </script>
+}

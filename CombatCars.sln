@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombatCars", "CombatCars\CombatCars.csproj", "{E63DBF22-95E5-468B-9876-B208E14D514C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombatCarsApplicationServer", "CombatCarsApplicationServer\CombatCarsApplicationServer.csproj", "{49DD4C1A-D6FB-4494-A455-38183F187E1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombatCarsRestAPI", "CombatCarsRestAPI\CombatCarsRestAPI.csproj", "{6A8E3CB3-C318-4BB2-A9B0-8845E79C1D9E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E63DBF22-95E5-468B-9876-B208E14D514C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E63DBF22-95E5-468B-9876-B208E14D514C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E63DBF22-95E5-468B-9876-B208E14D514C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E63DBF22-95E5-468B-9876-B208E14D514C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49DD4C1A-D6FB-4494-A455-38183F187E1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49DD4C1A-D6FB-4494-A455-38183F187E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49DD4C1A-D6FB-4494-A455-38183F187E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49DD4C1A-D6FB-4494-A455-38183F187E1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A8E3CB3-C318-4BB2-A9B0-8845E79C1D9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A8E3CB3-C318-4BB2-A9B0-8845E79C1D9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A8E3CB3-C318-4BB2-A9B0-8845E79C1D9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A8E3CB3-C318-4BB2-A9B0-8845E79C1D9E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
