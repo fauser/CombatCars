@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CombatCarsAPIModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="CombatCarsAPIModelStoreContainer">
+          <EntitySet Name="User" EntityType="CombatCarsAPIModel.Store.User" store:Type="Tables" Schema="fauser7_combatcars" />
+          <EntitySet Name="UserVehicle" EntityType="CombatCarsAPIModel.Store.UserVehicle" store:Type="Tables" Schema="fauser7_combatcars" />
+          <EntitySet Name="Vehicle" EntityType="CombatCarsAPIModel.Store.Vehicle" store:Type="Tables" Schema="fauser7_combatcars" />
+          <AssociationSet Name="FK_UserVehicle_User" Association="CombatCarsAPIModel.Store.FK_UserVehicle_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserVehicle" EntitySet="UserVehicle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserVehicle_Vehicle" Association="CombatCarsAPIModel.Store.FK_UserVehicle_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="UserVehicle" EntitySet="UserVehicle" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserVehicle">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="VehicleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="VehicleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="VehicleId" />
+          </Key>
+          <Property Name="VehicleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_UserVehicle_User">
+          <End Role="User" Type="CombatCarsAPIModel.Store.User" Multiplicity="1" />
+          <End Role="UserVehicle" Type="CombatCarsAPIModel.Store.UserVehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserVehicle">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserVehicle_Vehicle">
+          <End Role="Vehicle" Type="CombatCarsAPIModel.Store.Vehicle" Multiplicity="1" />
+          <End Role="UserVehicle" Type="CombatCarsAPIModel.Store.UserVehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="VehicleId" />
+            </Principal>
+            <Dependent Role="UserVehicle">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CombatCarsAPIModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="ComtaCarsAPIEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="User" EntityType="CombatCarsAPIModel.User" />
+          <EntitySet Name="Vehicle" EntityType="CombatCarsAPIModel.Vehicle" />
+          <AssociationSet Name="UserVehicle" Association="CombatCarsAPIModel.UserVehicle">
+            <End Role="User" EntitySet="User" />
+            <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Vehicle" Relationship="CombatCarsAPIModel.UserVehicle" FromRole="User" ToRole="Vehicle" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="VehicleId" />
+          </Key>
+          <Property Name="VehicleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="User" Relationship="CombatCarsAPIModel.UserVehicle" FromRole="Vehicle" ToRole="User" />
+        </EntityType>
+        <Association Name="UserVehicle">
+          <End Role="User" Type="CombatCarsAPIModel.User" Multiplicity="*" />
+          <End Role="Vehicle" Type="CombatCarsAPIModel.Vehicle" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CombatCarsAPIModelStoreContainer" CdmEntityContainer="ComtaCarsAPIEntities">
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="CombatCarsAPIModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicle">
+            <EntityTypeMapping TypeName="CombatCarsAPIModel.Vehicle">
+              <MappingFragment StoreEntitySet="Vehicle">
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UserVehicle" TypeName="CombatCarsAPIModel.UserVehicle" StoreEntitySet="UserVehicle">
+            <EndProperty Name="User">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="Vehicle">
+              <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
