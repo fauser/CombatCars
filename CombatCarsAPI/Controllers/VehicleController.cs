@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 using CombatCarsAPI.Models;
 
@@ -14,95 +10,46 @@ namespace CombatCarsAPI.Controllers
 {
     public class VehicleController : ApiController
     {
-        private ComtaCarsAPIEntities db = new ComtaCarsAPIEntities();
+        private CombatCarsAPIModelDataContext db = new CombatCarsAPIModelDataContext(@"Data Source=msdb6.surftown.se;Initial Catalog=fauser7_combatcars;Persist Security Info=True;User ID=fauser7_combatcars;Password=combat1234");
 
-        // GET api/Vehicle
-        public dynamic GetVehicles()
+        // GET api/vehicle
+        public IEnumerable<Vehicle> Get()
         {
-            return db.Vehicle.AsEnumerable();
+            var vehicles = from v in db.Vehicles
+                           select v;
+
+            return vehicles;
         }
 
-        // GET api/Vehicle/5
-        public Vehicle GetVehicle(int id)
+        // GET api/vehicle/5
+        public Vehicle Get(int id)
         {
-            Vehicle vehicle = db.Vehicle.Find(id);
+            var vehicle = (from v in db.Vehicles
+                           where v.VehicleId == id
+                           select v).FirstOrDefault();
+
             if (vehicle == null)
             {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+                throw new HttpResponseException(
+                    Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
             return vehicle;
         }
 
-        // PUT api/Vehicle/5
-        public HttpResponseMessage PutVehicle(int id, Vehicle vehicle)
+        // POST api/vehicle
+        public void Post([FromBody]Vehicle value)
         {
-            if (ModelState.IsValid && id == vehicle.VehicleId)
-            {
-                db.Entry(vehicle).State = EntityState.Modified;
-
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
-                }
-
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
         }
 
-        // POST api/Vehicle
-        public HttpResponseMessage PostVehicle(Vehicle vehicle)
+        // PUT api/vehicle/5
+        public void Put(int id, [FromBody]Vehicle value)
         {
-            if (ModelState.IsValid)
-            {
-                db.Vehicle.Add(vehicle);
-                db.SaveChanges();
-
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, vehicle);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = vehicle.VehicleId }));
-                return response;
-            }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
         }
 
-        // DELETE api/Vehicle/5
-        public HttpResponseMessage DeleteVehicle(int id)
+        // DELETE api/vehicle/5
+        public void Delete(int id)
         {
-            Vehicle vehicle = db.Vehicle.Find(id);
-            if (vehicle == null)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
-
-            db.Vehicle.Remove(vehicle);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.OK, vehicle);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
         }
     }
 }

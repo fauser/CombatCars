@@ -52,6 +52,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -65,9 +66,6 @@
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -134,26 +132,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CombatCarsAPIModel.Context.cs">
+    <Compile Include="Models\CombatCarsAPIModel.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CombatCarsAPIModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CombatCarsAPIModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CombatCarsAPIModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CombatCarsAPIModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CombatCarsAPIModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>CombatCarsAPIModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Vehicle.cs">
-      <DependentUpon>CombatCarsAPIModel.tt</DependentUpon>
+      <DependentUpon>CombatCarsAPIModel.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -214,22 +196,10 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <EntityDeploy Include="Models\CombatCarsAPIModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CombatCarsAPIModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\CombatCarsAPIModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CombatCarsAPIModel.edmx</DependentUpon>
-      <LastGenOutput>CombatCarsAPIModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\CombatCarsAPIModel.edmx.diagram">
-      <DependentUpon>CombatCarsAPIModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\CombatCarsAPIModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CombatCarsAPIModel.edmx</DependentUpon>
-      <LastGenOutput>CombatCarsAPIModel.cs</LastGenOutput>
+    <Content Include="Models\CombatCarsAPIModel.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>CombatCarsAPIModel.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Properties\PublishProfiles\Desktop.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
@@ -285,7 +255,13 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\CombatCarsAPIModel.dbml.layout">
+      <DependentUpon>CombatCarsAPIModel.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
