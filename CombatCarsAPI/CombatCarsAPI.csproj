@@ -48,6 +48,10 @@
       <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -69,9 +73,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
@@ -132,11 +133,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CombatCarsAPIModel.designer.cs">
+    <Compile Include="Data\CombatCarsAPIContext.cs">
+      <DependentUpon>CombatCarsAPIContext.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Data\CombatCarsAPIContext.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CombatCarsAPIModel.dbml</DependentUpon>
+      <DependentUpon>CombatCarsAPIContext.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -196,9 +201,9 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Models\CombatCarsAPIModel.dbml">
+    <Content Include="Data\CombatCarsAPIContext.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>CombatCarsAPIModel.designer.cs</LastGenOutput>
+      <LastGenOutput>CombatCarsAPIContext.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
     <None Include="Properties\PublishProfiles\Desktop.pubxml" />
@@ -259,8 +264,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Models\CombatCarsAPIModel.dbml.layout">
-      <DependentUpon>CombatCarsAPIModel.dbml</DependentUpon>
+    <None Include="Data\CombatCarsAPIContext.dbml.layout">
+      <DependentUpon>CombatCarsAPIContext.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <PropertyGroup>

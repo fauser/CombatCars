@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CombatCarsAPI.Models
+namespace CombatCarsAPI.Data
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
