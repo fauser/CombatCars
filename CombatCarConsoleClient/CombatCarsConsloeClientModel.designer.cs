@@ -18,6 +18,7 @@ namespace CombatCarConsoleClient
 	using System.Reflection;
 	using System.Linq;
 	using System.Linq.Expressions;
+	using System.Runtime.Serialization;
 	using System.ComponentModel;
 	using System;
 	
@@ -97,6 +98,7 @@ namespace CombatCarConsoleClient
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="fauser7_combatcars.[User]")]
+	[global::System.Runtime.Serialization.DataContractAttribute()]
 	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -109,6 +111,8 @@ namespace CombatCarConsoleClient
 		private string _Password;
 		
 		private EntitySet<UserVehicle> _UserVehicles;
+		
+		private bool serializing;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -124,11 +128,11 @@ namespace CombatCarConsoleClient
 		
 		public User()
 		{
-			this._UserVehicles = new EntitySet<UserVehicle>(new Action<UserVehicle>(this.attach_UserVehicles), new Action<UserVehicle>(this.detach_UserVehicles));
-			OnCreated();
+			this.Initialize();
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
 		public int UserId
 		{
 			get
@@ -149,6 +153,7 @@ namespace CombatCarConsoleClient
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
 		public string Username
 		{
 			get
@@ -169,6 +174,7 @@ namespace CombatCarConsoleClient
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
 		public string Password
 		{
 			get
@@ -189,10 +195,16 @@ namespace CombatCarConsoleClient
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserVehicle", Storage="_UserVehicles", ThisKey="UserId", OtherKey="UserId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4, EmitDefaultValue=false)]
 		public EntitySet<UserVehicle> UserVehicles
 		{
 			get
 			{
+				if ((this.serializing 
+							&& (this._UserVehicles.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
 				return this._UserVehicles;
 			}
 			set
@@ -232,9 +244,37 @@ namespace CombatCarConsoleClient
 			this.SendPropertyChanging();
 			entity.User = null;
 		}
+		
+		private void Initialize()
+		{
+			this._UserVehicles = new EntitySet<UserVehicle>(new Action<UserVehicle>(this.attach_UserVehicles), new Action<UserVehicle>(this.detach_UserVehicles));
+			OnCreated();
+		}
+		
+		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializedAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="fauser7_combatcars.Vehicle")]
+	[global::System.Runtime.Serialization.DataContractAttribute()]
 	public partial class Vehicle : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -245,6 +285,8 @@ namespace CombatCarConsoleClient
 		private string _Name;
 		
 		private EntitySet<UserVehicle> _UserVehicles;
+		
+		private bool serializing;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -258,11 +300,11 @@ namespace CombatCarConsoleClient
 		
 		public Vehicle()
 		{
-			this._UserVehicles = new EntitySet<UserVehicle>(new Action<UserVehicle>(this.attach_UserVehicles), new Action<UserVehicle>(this.detach_UserVehicles));
-			OnCreated();
+			this.Initialize();
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VehicleId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
 		public int VehicleId
 		{
 			get
@@ -283,6 +325,7 @@ namespace CombatCarConsoleClient
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
 		public string Name
 		{
 			get
@@ -303,10 +346,16 @@ namespace CombatCarConsoleClient
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Vehicle_UserVehicle", Storage="_UserVehicles", ThisKey="VehicleId", OtherKey="VehicleId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3, EmitDefaultValue=false)]
 		public EntitySet<UserVehicle> UserVehicles
 		{
 			get
 			{
+				if ((this.serializing 
+							&& (this._UserVehicles.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
 				return this._UserVehicles;
 			}
 			set
@@ -346,9 +395,37 @@ namespace CombatCarConsoleClient
 			this.SendPropertyChanging();
 			entity.Vehicle = null;
 		}
+		
+		private void Initialize()
+		{
+			this._UserVehicles = new EntitySet<UserVehicle>(new Action<UserVehicle>(this.attach_UserVehicles), new Action<UserVehicle>(this.detach_UserVehicles));
+			OnCreated();
+		}
+		
+		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializedAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="fauser7_combatcars.UserVehicle")]
+	[global::System.Runtime.Serialization.DataContractAttribute()]
 	public partial class UserVehicle : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -374,12 +451,11 @@ namespace CombatCarConsoleClient
 		
 		public UserVehicle()
 		{
-			this._User = default(EntityRef<User>);
-			this._Vehicle = default(EntityRef<Vehicle>);
-			OnCreated();
+			this.Initialize();
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
 		public int UserId
 		{
 			get
@@ -404,6 +480,7 @@ namespace CombatCarConsoleClient
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VehicleId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
 		public int VehicleId
 		{
 			get
@@ -513,6 +590,20 @@ namespace CombatCarConsoleClient
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void Initialize()
+		{
+			this._User = default(EntityRef<User>);
+			this._Vehicle = default(EntityRef<Vehicle>);
+			OnCreated();
+		}
+		
+		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
 		}
 	}
 }

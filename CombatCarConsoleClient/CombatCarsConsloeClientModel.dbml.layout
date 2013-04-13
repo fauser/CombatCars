@@ -20,14 +20,14 @@
         <elementListCompartment Id="acd9653c-b157-43d6-907c-cc969acc1ead" absoluteBounds="3.515, 1.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 4.44314697265625); (4.5 : 4.44314697265625); (4.5 : 2.06899251302083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 4.44314697265625); (4.5 : 4.44314697265625); (4.5 : 2.06899251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CombatCarsConsloeClientModelDataContext/User/User_UserVehicle" />
       <nodes>
         <classShapeMoniker Id="5701708b-d9a7-4255-8e51-eeac6913dc55" />
         <classShapeMoniker Id="b835836f-8417-4f1a-be17-eaadb3f674a6" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 1.47199625651042); (3.5 : 1.47199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 1.47199625651042); (3.5 : 1.47199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CombatCarsConsloeClientModelDataContext/Vehicle/Vehicle_UserVehicle" />
       <nodes>
         <classShapeMoniker Id="ce21f757-1146-4d4b-952c-2c391edfe86d" />

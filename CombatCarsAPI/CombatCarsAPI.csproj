@@ -133,15 +133,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Data\CombatCarsAPIContext.cs">
+    <Compile Include="Models\CombatCarsAPIContext.cs">
       <DependentUpon>CombatCarsAPIContext.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Data\CombatCarsAPIContext.designer.cs">
+    <Compile Include="Models\CombatCarsAPIContext.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CombatCarsAPIContext.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -201,7 +200,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Data\CombatCarsAPIContext.dbml">
+    <Content Include="Models\CombatCarsAPIContext.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>CombatCarsAPIContext.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
@@ -264,7 +263,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\CombatCarsAPIContext.dbml.layout">
+    <None Include="Models\CombatCarsAPIContext.dbml.layout">
       <DependentUpon>CombatCarsAPIContext.dbml</DependentUpon>
     </None>
   </ItemGroup>

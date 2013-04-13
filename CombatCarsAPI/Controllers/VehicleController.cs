@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using CombatCarsAPI.Data;
+using CombatCarsAPI.Models;
 
 namespace CombatCarsAPI.Controllers
 {
@@ -13,14 +13,28 @@ namespace CombatCarsAPI.Controllers
         private CombatCarsAPIModelDataContext repository = new CombatCarsAPIModelDataContext(@"Data Source=msdb6.surftown.se;Initial Catalog=fauser7_combatcars;Persist Security Info=True;User ID=fauser7_combatcars;Password=combat1234");
 
         // GET api/vehicle
-        public IEnumerable<Models.Vehicle> Get()
+        public IEnumerable<Vehicle> Get()
         {
+            /*
             var vehicles = from v in repository.Vehicles
                            select new Models.Vehicle
                            {
                                VehicleId = v.VehicleId,
                                Name = v.Name
                            };
+            return vehicles.ToList();
+            */
+
+
+            User user = (from u in repository.Users
+                       where u.Username == "Daniel"
+                       select u).FirstOrDefault();
+
+
+            var vehicles = from v in repository.Vehicles
+                           where v.UserVehicles.FirstOrDefault().UserId == user.UserId
+                           select v;
+
             return vehicles.ToList();
         }
 
