@@ -40,6 +40,9 @@ namespace CombatCarsAPI.Models
     partial void InsertUserVehicle(UserVehicle instance);
     partial void UpdateUserVehicle(UserVehicle instance);
     partial void DeleteUserVehicle(UserVehicle instance);
+    partial void InsertToken(Token instance);
+    partial void UpdateToken(Token instance);
+    partial void DeleteToken(Token instance);
     #endregion
 		
 		public CombatCarsAPIModelDataContext() : 
@@ -93,6 +96,14 @@ namespace CombatCarsAPI.Models
 			get
 			{
 				return this.GetTable<UserVehicle>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Token> Tokens
+		{
+			get
+			{
+				return this.GetTable<Token>();
 			}
 		}
 	}
@@ -596,6 +607,157 @@ namespace CombatCarsAPI.Models
 		{
 			this._User = default(EntityRef<User>);
 			this._Vehicle = default(EntityRef<Vehicle>);
+			OnCreated();
+		}
+		
+		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="fauser7_combatcars.Token")]
+	[global::System.Runtime.Serialization.DataContractAttribute()]
+	public partial class Token : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _UserId;
+		
+		private string _TokenString;
+		
+		private System.DateTime _Issued;
+		
+		private System.DateTime _ValidTo;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserIdChanging(int value);
+    partial void OnUserIdChanged();
+    partial void OnTokenStringChanging(string value);
+    partial void OnTokenStringChanged();
+    partial void OnIssuedChanging(System.DateTime value);
+    partial void OnIssuedChanged();
+    partial void OnValidToChanging(System.DateTime value);
+    partial void OnValidToChanged();
+    #endregion
+		
+		public Token()
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+		public int UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TokenString", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+		public string TokenString
+		{
+			get
+			{
+				return this._TokenString;
+			}
+			set
+			{
+				if ((this._TokenString != value))
+				{
+					this.OnTokenStringChanging(value);
+					this.SendPropertyChanging();
+					this._TokenString = value;
+					this.SendPropertyChanged("TokenString");
+					this.OnTokenStringChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Issued", DbType="DateTime NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+		public System.DateTime Issued
+		{
+			get
+			{
+				return this._Issued;
+			}
+			set
+			{
+				if ((this._Issued != value))
+				{
+					this.OnIssuedChanging(value);
+					this.SendPropertyChanging();
+					this._Issued = value;
+					this.SendPropertyChanged("Issued");
+					this.OnIssuedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidTo", DbType="DateTime NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+		public System.DateTime ValidTo
+		{
+			get
+			{
+				return this._ValidTo;
+			}
+			set
+			{
+				if ((this._ValidTo != value))
+				{
+					this.OnValidToChanging(value);
+					this.SendPropertyChanging();
+					this._ValidTo = value;
+					this.SendPropertyChanged("ValidTo");
+					this.OnValidToChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void Initialize()
+		{
 			OnCreated();
 		}
 		

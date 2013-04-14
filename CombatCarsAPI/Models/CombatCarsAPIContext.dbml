@@ -23,4 +23,12 @@
       <Association Name="Vehicle_UserVehicle" Member="Vehicle" ThisKey="VehicleId" OtherKey="VehicleId" Type="Vehicle" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="fauser7_combatcars.Token" Member="Tokens">
+    <Type Name="Token">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TokenString" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Issued" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ValidTo" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>
