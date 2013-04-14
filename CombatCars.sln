@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombatCarsAPI", "CombatCars
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombatCarConsoleClient", "CombatCarConsoleClient\CombatCarConsoleClient.csproj", "{0769FBA7-1899-4E8C-93F2-D509E802E664}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombatCarsAPITest", "CombatCarsAPITest\CombatCarsAPITest.csproj", "{C12EDCAD-25A8-470D-BB00-C72561CC8D75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{0769FBA7-1899-4E8C-93F2-D509E802E664}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0769FBA7-1899-4E8C-93F2-D509E802E664}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0769FBA7-1899-4E8C-93F2-D509E802E664}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C12EDCAD-25A8-470D-BB00-C72561CC8D75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C12EDCAD-25A8-470D-BB00-C72561CC8D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C12EDCAD-25A8-470D-BB00-C72561CC8D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C12EDCAD-25A8-470D-BB00-C72561CC8D75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
