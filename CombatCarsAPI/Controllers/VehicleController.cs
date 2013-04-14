@@ -5,16 +5,18 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using CombatCarsAPI.Models;
+using CombatCarsAPI.Security;
 
 namespace CombatCarsAPI.Controllers
 {
+    [TokenValidationAttribute]
     public class VehicleController : ApiController
     {
-        private CombatCarsAPIModelDataContext repository = new CombatCarsAPIModelDataContext(@"Data Source=msdb6.surftown.se;Initial Catalog=fauser7_combatcars;Persist Security Info=True;User ID=fauser7_combatcars;Password=combat1234");
-
         // GET api/vehicle
         public IEnumerable<Vehicle> Get()
         {
+            CombatCarsAPIModelDataContext repository = new CombatCarsAPIModelDataContext(@"Data Source=msdb6.surftown.se;Initial Catalog=fauser7_combatcars;Persist Security Info=True;User ID=fauser7_combatcars;Password=combat1234");
+
             /*
             var vehicles = from v in repository.Vehicles
                            select new Models.Vehicle
@@ -41,6 +43,8 @@ namespace CombatCarsAPI.Controllers
         // GET api/vehicle/5
         public Vehicle Get(int id)
         {
+            CombatCarsAPIModelDataContext repository = new CombatCarsAPIModelDataContext(@"Data Source=msdb6.surftown.se;Initial Catalog=fauser7_combatcars;Persist Security Info=True;User ID=fauser7_combatcars;Password=combat1234");
+
             var vehicle = (from v in repository.Vehicles
                            where v.VehicleId == id
                            select v).FirstOrDefault();
