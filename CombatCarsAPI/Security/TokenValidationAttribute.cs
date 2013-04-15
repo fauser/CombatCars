@@ -11,13 +11,11 @@ namespace CombatCarsAPI.Security
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            CombatCarsAPIModelDataContext repository = new CombatCarsAPIModelDataContext(@"Data Source=msdb6.surftown.se;Initial Catalog=fauser7_combatcars;Persist Security Info=True;User ID=fauser7_combatcars;Password=combat1234");
-
             string tokenFromHeader;
-
+            CombatCarsAPIModelDataContext repository = new CombatCarsAPIModelDataContext(ConnectionStringHandler.ConnectionString());
             try
             {
-                tokenFromHeader = actionContext.Request.Headers.GetValues("Authorization-Token").First();
+                tokenFromHeader = TokenHandler.GetTokenSpecifiedInRequest(repository, actionContext.Request).TokenString;
             }
             catch (Exception)
             {
@@ -37,7 +35,6 @@ namespace CombatCarsAPI.Security
                     {
                         Content = new StringContent("Unauthorized User")
                     };
-
 
                 base.OnActionExecuting(actionContext);
             }

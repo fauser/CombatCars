@@ -15,67 +15,127 @@ namespace CombatCarsAPI.Controllers
         // GET api/vehicle
         public IEnumerable<Vehicle> Get()
         {
-            CombatCarsAPIModelDataContext repository = new CombatCarsAPIModelDataContext(@"Data Source=msdb6.surftown.se;Initial Catalog=fauser7_combatcars;Persist Security Info=True;User ID=fauser7_combatcars;Password=combat1234");
+            using (CombatCarsAPIModelDataContext repository = new CombatCarsAPIModelDataContext(ConnectionStringHandler.ConnectionString()))
+            {
+                Token token = TokenHandler.GetTokenSpecifiedInRequest(repository, Request);
 
-            /*
-            var vehicles = from v in repository.Vehicles
-                           select new Models.Vehicle
-                           {
-                               VehicleId = v.VehicleId,
-                               Name = v.Name
-                           };
-            return vehicles.ToList();
-            */
+                if (token == null)
+                    throw new HttpResponseException(HttpStatusCode.Unauthorized);
 
+                var vehicles = from v in repository.Vehicles
+                               where v.UserVehicles.FirstOrDefault().UserId == token.UserId
+                               select v;
 
-            User user = (from u in repository.Users
-                       where u.Username == "Daniel"
-                       select u).FirstOrDefault();
+                TokenHandler.SetNewLeaseTime(repository, token);
 
-
-            var vehicles = from v in repository.Vehicles
-                           where v.UserVehicles.FirstOrDefault().UserId == user.UserId
-                           select v;
-
-            return vehicles.ToList();
+                return vehicles.ToList();
+            }
         }
 
         // GET api/vehicle/5
         public Vehicle Get(int id)
         {
-            CombatCarsAPIModelDataContext repository = new CombatCarsAPIModelDataContext(@"Data Source=msdb6.surftown.se;Initial Catalog=fauser7_combatcars;Persist Security Info=True;User ID=fauser7_combatcars;Password=combat1234");
-
-            var vehicle = (from v in repository.Vehicles
-                           where v.VehicleId == id
-                           select v).FirstOrDefault();
-
-            if (vehicle == null)
+            using (CombatCarsAPIModelDataContext repository = new CombatCarsAPIModelDataContext(ConnectionStringHandler.ConnectionString()))
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
+                Token token = TokenHandler.GetTokenSpecifiedInRequest(repository, Request);
+                if (token == null)
+                    throw new HttpResponseException(HttpStatusCode.Unauthorized);
 
-            return vehicle;
+                var vehicle = (from v in repository.Vehicles
+                               where
+                                v.UserVehicles.FirstOrDefault().UserId == token.UserId
+                                && v.VehicleId == id
+                               select v);
+
+                TokenHandler.SetNewLeaseTime(repository, token);
+
+                if (vehicle == null)
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+                return vehicle.FirstOrDefault();
+            }
         }
 
         // POST api/vehicle
         public void Post([FromBody]Vehicle value)
         {
-            if (value == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+            using (CombatCarsAPIModelDataContext repository = new CombatCarsAPIModelDataContext(ConnectionStringHandler.ConnectionString()))
+            {
+                Token token = TokenHandler.GetTokenSpecifiedInRequest(repository, Request);
+                if (token == null)
+                    throw new HttpResponseException(HttpStatusCode.Unauthorized);
 
+                if (value == null)
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
 
+                repository.Vehicles.InsertOnSubmit(value);
+                repository.SubmitChanges();
+
+                UserVehicle uv = new UserVehicle() { UserId = token.UserId, VehicleId = value.VehicleId };
+
+                repository.UserVehicles.InsertOnSubmit(uv);
+                repository.SubmitChanges();
+
+                TokenHandler.SetNewLeaseTime(repository, token);
+            }
         }
 
         // PUT api/vehicle/5
         public void Put(int id, [FromBody]Vehicle value)
         {
-            if (value == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+            using (CombatCarsAPIModelDataContext repository = new CombatCarsAPIModelDataContext(ConnectionStringHandler.ConnectionString()))
+            {
+                Token token = TokenHandler.GetTokenSpecifiedInRequest(repository, Request);
+                if (token == null)
+                    throw new HttpResponseException(HttpStatusCode.Unauthorized);
+
+                if (value == null)
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+
+                var vehicle = (from v in repository.Vehicles
+                               where
+                                v.UserVehicles.FirstOrDefault().UserId == token.UserId
+                                && v.VehicleId == id
+                               select v).FirstOrDefault();
+
+                if (vehicle != null)
+                {
+                    vehicle.Name = value.Name;
+                    repository.SubmitChanges();
+                }
+
+                TokenHandler.SetNewLeaseTime(repository, token);
+            }
         }
 
         // DELETE api/vehicle/5
         public void Delete(int id)
         {
+            using (CombatCarsAPIModelDataContext repository = new CombatCarsAPIModelDataContext(ConnectionStringHandler.ConnectionString()))
+            {
+                Token token = TokenHandler.GetTokenSpecifiedInRequest(repository, Request);
+                if (token == null)
+                    throw new HttpResponseException(HttpStatusCode.Unauthorized);
+
+                Vehicle vehicle = (from v in repository.Vehicles
+                                   where
+                                    v.UserVehicles.FirstOrDefault().UserId == token.UserId
+                                    && v.VehicleId == id
+                                   select v).FirstOrDefault();
+
+                if (vehicle == null)
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+
+                if (vehicle.UserVehicles != null)
+                    repository.UserVehicles.DeleteOnSubmit(vehicle.UserVehicles.FirstOrDefault());
+
+                repository.Vehicles.DeleteOnSubmit(vehicle);
+                repository.SubmitChanges();
+
+                TokenHandler.SetNewLeaseTime(repository, token);
+            }
         }
+
     }
 }
