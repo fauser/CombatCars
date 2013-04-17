@@ -34,15 +34,15 @@ namespace CombatCarsAPI.Models
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
-    partial void InsertVehicle(Vehicle instance);
-    partial void UpdateVehicle(Vehicle instance);
-    partial void DeleteVehicle(Vehicle instance);
     partial void InsertUserVehicle(UserVehicle instance);
     partial void UpdateUserVehicle(UserVehicle instance);
     partial void DeleteUserVehicle(UserVehicle instance);
     partial void InsertToken(Token instance);
     partial void UpdateToken(Token instance);
     partial void DeleteToken(Token instance);
+    partial void InsertVehicle(Vehicle instance);
+    partial void UpdateVehicle(Vehicle instance);
+    partial void DeleteVehicle(Vehicle instance);
     #endregion
 		
 		public CombatCarsAPIModelDataContext() : 
@@ -83,14 +83,6 @@ namespace CombatCarsAPI.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Vehicle> Vehicles
-		{
-			get
-			{
-				return this.GetTable<Vehicle>();
-			}
-		}
-		
 		public System.Data.Linq.Table<UserVehicle> UserVehicles
 		{
 			get
@@ -104,6 +96,14 @@ namespace CombatCarsAPI.Models
 			get
 			{
 				return this.GetTable<Token>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Vehicle> Vehicles
+		{
+			get
+			{
+				return this.GetTable<Vehicle>();
 			}
 		}
 	}
@@ -254,157 +254,6 @@ namespace CombatCarsAPI.Models
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
-		}
-		
-		private void Initialize()
-		{
-			this._UserVehicles = new EntitySet<UserVehicle>(new Action<UserVehicle>(this.attach_UserVehicles), new Action<UserVehicle>(this.detach_UserVehicles));
-			OnCreated();
-		}
-		
-		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
-		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnDeserializing(StreamingContext context)
-		{
-			this.Initialize();
-		}
-		
-		[global::System.Runtime.Serialization.OnSerializingAttribute()]
-		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerializing(StreamingContext context)
-		{
-			this.serializing = true;
-		}
-		
-		[global::System.Runtime.Serialization.OnSerializedAttribute()]
-		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerialized(StreamingContext context)
-		{
-			this.serializing = false;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="fauser7_combatcars.Vehicle")]
-	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class Vehicle : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _VehicleId;
-		
-		private string _Name;
-		
-		private EntitySet<UserVehicle> _UserVehicles;
-		
-		private bool serializing;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnVehicleIdChanging(int value);
-    partial void OnVehicleIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    #endregion
-		
-		public Vehicle()
-		{
-			this.Initialize();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VehicleId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
-		public int VehicleId
-		{
-			get
-			{
-				return this._VehicleId;
-			}
-			set
-			{
-				if ((this._VehicleId != value))
-				{
-					this.OnVehicleIdChanging(value);
-					this.SendPropertyChanging();
-					this._VehicleId = value;
-					this.SendPropertyChanged("VehicleId");
-					this.OnVehicleIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Vehicle_UserVehicle", Storage="_UserVehicles", ThisKey="VehicleId", OtherKey="VehicleId")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3, EmitDefaultValue=false)]
-		public EntitySet<UserVehicle> UserVehicles
-		{
-			get
-			{
-				if ((this.serializing 
-							&& (this._UserVehicles.HasLoadedOrAssignedValues == false)))
-				{
-					return null;
-				}
-				return this._UserVehicles;
-			}
-			set
-			{
-				this._UserVehicles.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_UserVehicles(UserVehicle entity)
-		{
-			this.SendPropertyChanging();
-			entity.Vehicle = this;
-		}
-		
-		private void detach_UserVehicles(UserVehicle entity)
-		{
-			this.SendPropertyChanging();
-			entity.Vehicle = null;
 		}
 		
 		private void Initialize()
@@ -766,6 +615,232 @@ namespace CombatCarsAPI.Models
 		public void OnDeserializing(StreamingContext context)
 		{
 			this.Initialize();
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="fauser7_combatcars.Vehicle")]
+	[global::System.Runtime.Serialization.DataContractAttribute()]
+	public partial class Vehicle : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _VehicleId;
+		
+		private string _Name;
+		
+		private int _OriginalMaximumSpeed;
+		
+		private int _MaximumSpeed;
+		
+		private int _CurrentSpeed;
+		
+		private EntitySet<UserVehicle> _UserVehicles;
+		
+		private bool serializing;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnVehicleIdChanging(int value);
+    partial void OnVehicleIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnOriginalMaximumSpeedChanging(int value);
+    partial void OnOriginalMaximumSpeedChanged();
+    partial void OnMaximumSpeedChanging(int value);
+    partial void OnMaximumSpeedChanged();
+    partial void OnCurrentSpeedChanging(int value);
+    partial void OnCurrentSpeedChanged();
+    #endregion
+		
+		public Vehicle()
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VehicleId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+		public int VehicleId
+		{
+			get
+			{
+				return this._VehicleId;
+			}
+			set
+			{
+				if ((this._VehicleId != value))
+				{
+					this.OnVehicleIdChanging(value);
+					this.SendPropertyChanging();
+					this._VehicleId = value;
+					this.SendPropertyChanged("VehicleId");
+					this.OnVehicleIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OriginalMaximumSpeed", DbType="Int NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+		public int OriginalMaximumSpeed
+		{
+			get
+			{
+				return this._OriginalMaximumSpeed;
+			}
+			set
+			{
+				if ((this._OriginalMaximumSpeed != value))
+				{
+					this.OnOriginalMaximumSpeedChanging(value);
+					this.SendPropertyChanging();
+					this._OriginalMaximumSpeed = value;
+					this.SendPropertyChanged("OriginalMaximumSpeed");
+					this.OnOriginalMaximumSpeedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaximumSpeed", DbType="Int NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+		public int MaximumSpeed
+		{
+			get
+			{
+				return this._MaximumSpeed;
+			}
+			set
+			{
+				if ((this._MaximumSpeed != value))
+				{
+					this.OnMaximumSpeedChanging(value);
+					this.SendPropertyChanging();
+					this._MaximumSpeed = value;
+					this.SendPropertyChanged("MaximumSpeed");
+					this.OnMaximumSpeedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentSpeed", DbType="Int NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+		public int CurrentSpeed
+		{
+			get
+			{
+				return this._CurrentSpeed;
+			}
+			set
+			{
+				if ((this._CurrentSpeed != value))
+				{
+					this.OnCurrentSpeedChanging(value);
+					this.SendPropertyChanging();
+					this._CurrentSpeed = value;
+					this.SendPropertyChanged("CurrentSpeed");
+					this.OnCurrentSpeedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Vehicle_UserVehicle", Storage="_UserVehicles", ThisKey="VehicleId", OtherKey="VehicleId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6, EmitDefaultValue=false)]
+		public EntitySet<UserVehicle> UserVehicles
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._UserVehicles.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._UserVehicles;
+			}
+			set
+			{
+				this._UserVehicles.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_UserVehicles(UserVehicle entity)
+		{
+			this.SendPropertyChanging();
+			entity.Vehicle = this;
+		}
+		
+		private void detach_UserVehicles(UserVehicle entity)
+		{
+			this.SendPropertyChanging();
+			entity.Vehicle = null;
+		}
+		
+		private void Initialize()
+		{
+			this._UserVehicles = new EntitySet<UserVehicle>(new Action<UserVehicle>(this.attach_UserVehicles), new Action<UserVehicle>(this.detach_UserVehicles));
+			OnCreated();
+		}
+		
+		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializedAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
 		}
 	}
 }
