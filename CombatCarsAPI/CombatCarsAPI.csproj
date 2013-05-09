@@ -160,6 +160,7 @@
       <DependentUpon>CombatCarsAPIContext.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\ConnectionStringHandler.cs" />
+    <Compile Include="Models\EnumHeader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\ApiIdentity.cs" />
     <Compile Include="Security\RSAClass.cs" />
@@ -307,7 +308,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>56868</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:54947/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

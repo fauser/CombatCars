@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
+using System.Threading;
 using System.Web;
 using CombatCarsAPI.Models;
 
@@ -10,16 +11,16 @@ namespace CombatCarsAPI.Security
 {
     public class BasicAuthenticationAttribute : System.Web.Http.Filters.ActionFilterAttribute
     {
-
         public override void OnActionExecuting(System.Web.Http.Controllers.HttpActionContext actionContext)
         {
-            if (actionContext.Request.Headers.Authorization == null)
+            IEnumerable<string> ds;
+            if (actionContext.Request.Headers.TryGetValues(EnumHeader.Authentication.ToString(), out ds) && ds.Count() != 1)
             {
                 actionContext.Response = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
             }
             else
             {
-                string authToken = actionContext.Request.Headers.Authorization.Parameter;
+                string authToken = ds.First();
                 string decodedToken = Encoding.UTF8.GetString(Convert.FromBase64String(authToken));
 
                 string username = decodedToken.Substring(0, decodedToken.IndexOf(":"));
@@ -46,7 +47,9 @@ namespace CombatCarsAPI.Security
                             token = TokenHandler.CreateNewToken(repository, user);
                         }
 
-                        HttpContext.Current.User = new GenericPrincipal(new ApiIdentity(user, token), new string[] { });
+                        GenericPrincipal gp = new GenericPrincipal(new ApiIdentity(user, token), new string[] { });
+                        Thread.CurrentPrincipal = gp;
+                        HttpContext.Current.User = gp;
                         base.OnActionExecuting(actionContext);
                     }
                     else
