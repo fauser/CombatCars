@@ -21,7 +21,7 @@ namespace CombatCarsAPI.Security
             {
                 actionContext.Response = new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest)
                 {
-                    Content = new StringContent("Missing Authorization-Token")
+                    Content = new StringContent("Missing AuthorizationToken")
                 };
                 return;
             }

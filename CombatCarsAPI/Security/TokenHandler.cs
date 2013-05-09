@@ -11,12 +11,17 @@ namespace CombatCarsAPI.Security
     {
         internal static string ReadTokenStringFromRequest(HttpRequestMessage request)
         {
-            return request.Headers.GetValues("Authorization-Token").First();
+            IEnumerable<string> ds;
+            if (request.Headers.TryGetValues(EnumHeader.AuthorizationToken.ToString(), out ds) && ds.Count() != 1)
+            {
+                return string.Empty;
+            }
+            return ds.First();
         }
 
         internal static Token GetTokenSpecifiedInRequest(CombatCarsAPIModelDataContext repository, HttpRequestMessage request)
         {
-            string tokenFromHeader = request.Headers.GetValues("Authorization-Token").First();
+            string tokenFromHeader = request.Headers.GetValues(EnumHeader.AuthorizationToken.ToString()).First();
 
             Token token = (from t in repository.Tokens
                            where t.TokenString == tokenFromHeader
