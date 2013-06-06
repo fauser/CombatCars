@@ -6,11 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using CombatCarsWinformsClient.GameMechanics;
 using Tao.OpenGl;
 using Tao.DevIl;
+using CombatCarsWinFormsClientEngine;
 using CombatCarsWinformsClient.State;
-using CombatCarsWinformsClient.Input;
 
 namespace CombatCarsWinformsClient
 {
@@ -21,7 +20,7 @@ namespace CombatCarsWinformsClient
 
         StateSystem _system = new StateSystem();
         TextureManager _textureManager = new TextureManager();
-        Input.Input _input = new Input.Input();
+        Input _input = new Input();
 
         public MainForm()
         {
@@ -48,7 +47,7 @@ namespace CombatCarsWinformsClient
             _system.AddState(EnumState.Tween, new TweenState(_textureManager));
             _system.AddState(EnumState.Matrix, new MatrixState(_textureManager));
 
-            _system.ChangeState(EnumState.Matrix);
+            _system.ChangeState(EnumState.Tween);
         }
 
         private void InitializeTextures()
@@ -100,7 +99,7 @@ namespace CombatCarsWinformsClient
             System.Drawing.Point mousePos = Cursor.Position;
             mousePos = _openGLControl.PointToClient(mousePos);
 
-            Point adjustedMousePoint = new Point();
+            CombatCarsWinFormsClientEngine.Point adjustedMousePoint = new CombatCarsWinFormsClientEngine.Point();
             adjustedMousePoint.X = (float)mousePos.X - ((float)ClientSize.Width / 2);
             adjustedMousePoint.Y = ((float)ClientSize.Height / 2) - (float)mousePos.Y;
 

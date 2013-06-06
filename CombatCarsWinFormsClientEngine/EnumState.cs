@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CombatCarsWinformsClient.State
+namespace CombatCarsWinFormsClientEngine
 {
-    enum EnumState
+    public enum EnumState
     {
         Splash,
         Title,

@@ -5,9 +5,9 @@ using System.Text;
 using Tao.DevIl;
 using Tao.OpenGl;
 
-namespace CombatCarsWinformsClient.State
+namespace CombatCarsWinFormsClientEngine
 {
-    class TextureManager : IDisposable
+    public class TextureManager : IDisposable
     {
         Dictionary<string, Texture> _textureDatabase = new Dictionary<string, Texture>();
 

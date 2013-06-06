@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CombatCarsWinformsClient.Input
+namespace CombatCarsWinFormsClientEngine
 {
     public class Input
     {
-        public Point MousPosition { get; set; }
+        public CombatCarsWinFormsClientEngine.Point MousPosition { get; set; }
     }
 }

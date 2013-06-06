@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
-namespace CombatCarsWinformsClient.GameMechanics
+namespace CombatCarsWinFormsClientEngine
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct Message
@@ -18,7 +18,7 @@ namespace CombatCarsWinformsClient.GameMechanics
         public System.Drawing.Point p;
     }
 
-    internal class FastLoop
+    public class FastLoop
     {
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("User32.dll", CharSet = CharSet.Auto)]

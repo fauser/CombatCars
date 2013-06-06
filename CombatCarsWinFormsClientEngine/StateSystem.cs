@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CombatCarsWinformsClient.State;
 
-namespace CombatCarsWinformsClient
+namespace CombatCarsWinFormsClientEngine
 {
-    class StateSystem
+    public class StateSystem
     {
         Dictionary<EnumState, IGameObject> _stateStore = new Dictionary<EnumState, IGameObject>();
         IGameObject _currentState = null;
 
-        internal void Update(double elapsedTime)
+        public void Update(double elapsedTime)
         {
             if (_currentState == null)
                 return;
@@ -27,19 +26,19 @@ namespace CombatCarsWinformsClient
             _currentState.Render();
         }
 
-        internal void AddState(EnumState stateId, IGameObject state)
+        public void AddState(EnumState stateId, IGameObject state)
         {
             System.Diagnostics.Debug.Assert(Exists(stateId) == false);
             _stateStore.Add(stateId, state);
         }
 
-        internal void ChangeState(EnumState stateId)
+        public void ChangeState(EnumState stateId)
         {
             System.Diagnostics.Debug.Assert(Exists(stateId));
             _currentState = _stateStore[stateId];
         }
 
-        internal bool Exists(EnumState stateId)
+        public bool Exists(EnumState stateId)
         {
             return _stateStore.ContainsKey(stateId);
         }

@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CombatCarsWinFormsClientEngine;
 
 namespace CombatCarsWinformsClient.State
 {
     class RectangleIntersectionState : IGameObject
     {
-        Input.Input _input;
+        Input _input;
         Rectangle _rectangle = new Rectangle(new Vector(0, 0, 0), new Vector(200, 200, 0));
 
-        public RectangleIntersectionState(Input.Input input)
+        public RectangleIntersectionState(Input input)
         {
             _input = input;
         }

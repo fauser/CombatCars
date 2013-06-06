@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Tao.OpenGl;
 
-namespace CombatCarsWinformsClient
+namespace CombatCarsWinFormsClientEngine
 {
     public class Batch
     {

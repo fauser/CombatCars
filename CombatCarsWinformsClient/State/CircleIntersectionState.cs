@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CombatCarsWinFormsClientEngine;
 using Tao.OpenGl;
 
 namespace CombatCarsWinformsClient.State
@@ -9,9 +10,9 @@ namespace CombatCarsWinformsClient.State
     class CircleIntersectionState : IGameObject
     {
         Circle _circle = new Circle(Vector.Zero, 200);
-        Input.Input _input;
+        Input _input;
 
-        public CircleIntersectionState(Input.Input input)
+        public CircleIntersectionState(Input input)
         {
             Gl.glLineWidth(3);
             Gl.glDisable(Gl.GL_TEXTURE_2D);

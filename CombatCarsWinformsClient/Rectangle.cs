@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CombatCarsWinFormsClientEngine;
 using Tao.OpenGl;
 
 namespace CombatCarsWinformsClient
 {
     public class Rectangle
     {
-
         Vector BottomLeft { get; set; }
         Vector TopRight { get; set; }
         Color _color = new Color(1, 1, 1, 1);
@@ -37,7 +37,7 @@ namespace CombatCarsWinformsClient
             Gl.glEnd();
         }
 
-        public bool Intersects(Point point)
+        public bool Intersects(CombatCarsWinFormsClientEngine.Point point)
         {
             if (point.X >= BottomLeft.X && point.X <= TopRight.X && point.Y <= TopRight.Y && point.Y >= BottomLeft.Y)
             {

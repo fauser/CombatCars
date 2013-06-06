@@ -5,7 +5,7 @@ using System.Text;
 using Tao.OpenGl;
 using System.Runtime.InteropServices;
 
-namespace CombatCarsWinformsClient
+namespace CombatCarsWinFormsClientEngine
 {
     public class Renderer
     {
@@ -42,7 +42,7 @@ namespace CombatCarsWinformsClient
             }
         }
 
-        internal void DrawText(Text text)
+        public void DrawText(Text text)
         {
             foreach (CharacterSprite c in text.CharacterSprites)
             {
