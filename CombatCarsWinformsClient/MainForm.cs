@@ -22,6 +22,7 @@ namespace CombatCarsWinformsClient
         Input _input = new Input();
         TextureManager _textureManager = new TextureManager();
         SoundManager _soundManager = new SoundManager();
+        CombatCarsWinFormsClientEngine.Font _titleFont;
 
         public MainForm()
         {
@@ -29,13 +30,20 @@ namespace CombatCarsWinformsClient
             _openGLControl.InitializeContexts();
 
             _input.Mouse = new Mouse(this, _openGLControl);
+            _input.Keyboard = new Keyboard(_openGLControl);
 
             InitializeDisplay();
-            InitializeTextures();
             InitializeSounds();
+            InitializeTextures();
+            InitializeFonts();
             InitializeGameState();
 
             _fastLoop = new FastLoop(GameLoop);
+        }
+
+        private void InitializeFonts()
+        {
+            _titleFont = new CombatCarsWinFormsClientEngine.Font(_textureManager.Get("font"), FontParser.Parse("font.fnt"));
         }
 
         private void InitializeSounds()
@@ -57,9 +65,9 @@ namespace CombatCarsWinformsClient
             _system.AddState(EnumState.Tween, new TweenState(_textureManager));
             _system.AddState(EnumState.Matrix, new MatrixState(_textureManager));
             _system.AddState(EnumState.Sound, new SoundState(_soundManager));
-            _system.AddState(EnumState.Mouse, new MouseState(_input));
+            _system.AddState(EnumState.Input, new InputState(_input));
 
-            _system.ChangeState(EnumState.Mouse);
+            _system.ChangeState(EnumState.Input);
         }
 
         private void InitializeTextures()

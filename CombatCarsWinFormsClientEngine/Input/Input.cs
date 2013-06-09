@@ -9,6 +9,7 @@ namespace CombatCarsWinFormsClientEngine.Input
     {
         public CombatCarsWinFormsClientEngine.Point MousePosition { get; set; }
         public Mouse Mouse { get; set; }
+        public Keyboard Keyboard { get; set; }
 
         public Input()
         {
@@ -18,6 +19,7 @@ namespace CombatCarsWinFormsClientEngine.Input
         public void Update(double elapsedTime)
         {
             Mouse.Update(elapsedTime);
+            Keyboard.Update();
         }
     }
 }

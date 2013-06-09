@@ -65,6 +65,8 @@
     <Compile Include="Font.cs" />
     <Compile Include="FontParser.cs" />
     <Compile Include="FastLoop.cs" />
+    <Compile Include="Input\Keyboard.cs" />
+    <Compile Include="Input\KeyState.cs" />
     <Compile Include="Input\Mouse.cs" />
     <Compile Include="PreciseTimer.cs" />
     <Compile Include="IGameObject.cs" />

@@ -8,7 +8,7 @@ using Tao.OpenGl;
 
 namespace CombatCarsWinformsClient.State
 {
-    class MouseState : IGameObject
+    class InputState : IGameObject
     {
         Input _input;
 
@@ -17,7 +17,7 @@ namespace CombatCarsWinformsClient.State
         bool _middleToggle = false;
 
 
-        public MouseState(Input input)
+        public InputState(Input input)
         {
             _input = input;
         }
@@ -72,9 +72,9 @@ namespace CombatCarsWinformsClient.State
                 DrawButtonPoint(_rightToggle, 100, 0);
                 DrawButtonPoint(_middleToggle, 0, 0);
 
-                DrawButtonPoint(_input.Mouse.LeftHeld, -100, 20);
-                DrawButtonPoint(_input.Mouse.RightHeld, 100, 20);
-                DrawButtonPoint(_input.Mouse.MiddleHeld, 0, 20);
+                DrawButtonPoint(_input.Keyboard.IsKeyHeld(System.Windows.Forms.Keys.Left), -100, 20);
+                DrawButtonPoint(_input.Keyboard.IsKeyHeld(System.Windows.Forms.Keys.Right), 100, 20);
+                DrawButtonPoint(_input.Keyboard.IsKeyHeld(System.Windows.Forms.Keys.A), 0, 20);
             }
             Gl.glEnd();
         }

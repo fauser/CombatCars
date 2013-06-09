@@ -62,7 +62,7 @@
     <Compile Include="Color.cs" />
     <Compile Include="Rectangle.cs" />
     <Compile Include="State\MatrixState.cs" />
-    <Compile Include="State\MouseState.cs" />
+    <Compile Include="State\InputState.cs" />
     <Compile Include="State\RectangleIntersectionState.cs" />
     <Compile Include="State\CircleIntersectionState.cs" />
     <Compile Include="State\DrawSpriteState.cs" />
