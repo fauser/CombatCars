@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CombatCarsWinFormsClientEngine;
+using CombatCarsWinFormsClientEngine.Input;
 
 namespace CombatCarsWinformsClient.State
 {
@@ -18,7 +19,7 @@ namespace CombatCarsWinformsClient.State
 
         void IGameObject.Update(double elapsedTime)
         {
-            if (_rectangle.Intersects(_input.MousPosition))
+            if (_rectangle.Intersects(_input.MousePosition))
             {
                 _rectangle.Color = new Color(1, 0, 0, 1);
             }

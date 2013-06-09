@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CombatCarsWinFormsClientEngine;
+using CombatCarsWinFormsClientEngine.Input;
 using Tao.OpenGl;
 
 namespace CombatCarsWinformsClient.State
@@ -22,7 +23,7 @@ namespace CombatCarsWinformsClient.State
 
         void IGameObject.Update(double elapsedTime)
         {
-            if (_circle.Intersects(_input.MousPosition))
+            if (_circle.Intersects(_input.MousePosition))
             {
                 _circle.Color = new Color(1, 0, 0, 1);
             }
@@ -41,7 +42,7 @@ namespace CombatCarsWinformsClient.State
             Gl.glPointSize(5);
             Gl.glBegin(Gl.GL_POINTS);
             {
-                Gl.glVertex2f(_input.MousPosition.X, _input.MousPosition.Y);
+                Gl.glVertex2f(_input.MousePosition.X, _input.MousePosition.Y);
             }
             Gl.glEnd();
         }

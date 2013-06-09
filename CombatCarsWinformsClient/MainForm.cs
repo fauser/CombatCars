@@ -10,28 +10,38 @@ using Tao.OpenGl;
 using Tao.DevIl;
 using CombatCarsWinFormsClientEngine;
 using CombatCarsWinformsClient.State;
+using CombatCarsWinFormsClientEngine.Input;
 
 namespace CombatCarsWinformsClient
 {
     public partial class MainForm : Form
     {
-        FastLoop _fastLoop;
         bool _fullscreen = false;
-
+        FastLoop _fastLoop;
         StateSystem _system = new StateSystem();
-        TextureManager _textureManager = new TextureManager();
         Input _input = new Input();
+        TextureManager _textureManager = new TextureManager();
+        SoundManager _soundManager = new SoundManager();
 
         public MainForm()
         {
             InitializeComponent();
             _openGLControl.InitializeContexts();
 
+            _input.Mouse = new Mouse(this, _openGLControl);
+
             InitializeDisplay();
             InitializeTextures();
+            InitializeSounds();
             InitializeGameState();
 
             _fastLoop = new FastLoop(GameLoop);
+        }
+
+        private void InitializeSounds()
+        {
+            _soundManager.LoadSound("engine", "Engine.wav");
+            _soundManager.LoadSound("gun", "Gun.wav");
         }
 
         private void InitializeGameState()
@@ -46,8 +56,10 @@ namespace CombatCarsWinformsClient
             _system.AddState(EnumState.RectangleIntersection, new RectangleIntersectionState(_input));
             _system.AddState(EnumState.Tween, new TweenState(_textureManager));
             _system.AddState(EnumState.Matrix, new MatrixState(_textureManager));
+            _system.AddState(EnumState.Sound, new SoundState(_soundManager));
+            _system.AddState(EnumState.Mouse, new MouseState(_input));
 
-            _system.ChangeState(EnumState.Tween);
+            _system.ChangeState(EnumState.Mouse);
         }
 
         private void InitializeTextures()
@@ -81,6 +93,7 @@ namespace CombatCarsWinformsClient
         {
             base.OnClientSizeChanged(e);
             Gl.glViewport(0, 0, this.ClientSize.Width, this.ClientSize.Height);
+            Setup2DGraphics(ClientSize.Width, ClientSize.Height);
         }
 
         private void Setup2DGraphics(double width, double height)
@@ -94,21 +107,14 @@ namespace CombatCarsWinformsClient
             Gl.glLoadIdentity();
         }
 
-        private void UpdateInput()
+        private void UpdateInput(double elapsedTime)
         {
-            System.Drawing.Point mousePos = Cursor.Position;
-            mousePos = _openGLControl.PointToClient(mousePos);
-
-            CombatCarsWinFormsClientEngine.Point adjustedMousePoint = new CombatCarsWinFormsClientEngine.Point();
-            adjustedMousePoint.X = (float)mousePos.X - ((float)ClientSize.Width / 2);
-            adjustedMousePoint.Y = ((float)ClientSize.Height / 2) - (float)mousePos.Y;
-
-            _input.MousPosition = adjustedMousePoint;
+            _input.Update(elapsedTime);
         }
 
         void GameLoop(double elapsedTime)
         {
-            UpdateInput();
+            UpdateInput(elapsedTime);
             _system.Update(elapsedTime);
             _system.Render();
             _openGLControl.Refresh();

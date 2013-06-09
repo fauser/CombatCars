@@ -16,6 +16,8 @@ namespace CombatCarsWinFormsClientEngine
         CircleIntersection,
         RectangleIntersection,
         Tween,
-        Matrix
+        Matrix,
+        Sound,
+        Mouse
     }
 }
