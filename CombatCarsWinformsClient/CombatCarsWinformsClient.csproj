@@ -60,12 +60,9 @@
   <ItemGroup>
     <Compile Include="Circle.cs" />
     <Compile Include="Color.cs" />
+    <Compile Include="LevelDescription.cs" />
+    <Compile Include="PersistentGameData.cs" />
     <Compile Include="Rectangle.cs" />
-    <Compile Include="State\MatrixState.cs" />
-    <Compile Include="State\InputState.cs" />
-    <Compile Include="State\RectangleIntersectionState.cs" />
-    <Compile Include="State\CircleIntersectionState.cs" />
-    <Compile Include="State\DrawSpriteState.cs" />
     <Compile Include="FramesPerScond.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -75,13 +72,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="State\CircleIntersectionState.cs" />
+    <Compile Include="State\DrawSpriteState.cs" />
+    <Compile Include="State\FPSState.cs" />
+    <Compile Include="State\GameOverState.cs" />
+    <Compile Include="State\InnerGameState.cs" />
+    <Compile Include="State\InputState.cs" />
+    <Compile Include="State\MatrixState.cs" />
+    <Compile Include="State\RectangleIntersectionState.cs" />
     <Compile Include="State\SoundState.cs" />
     <Compile Include="State\SpecialEffectState.cs" />
     <Compile Include="State\SplashScreenState.cs" />
     <Compile Include="State\StartMenuState.cs" />
-    <Compile Include="State\TweenState.cs" />
-    <Compile Include="State\FPSState.cs" />
     <Compile Include="State\TitleMenuState.cs" />
+    <Compile Include="State\TweenState.cs" />
     <Compile Include="State\WaveFormGraphState.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -95,16 +99,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="CalibriFont.fnt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="CalibriFont_0.tga">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="font.fnt">
+    <None Include="Calibri30.fnt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="font_0.tga">
+    <None Include="Calibri30_0.tga">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Calibri40.fnt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Calibri40_0.tga">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
