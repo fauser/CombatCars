@@ -23,6 +23,7 @@ namespace CombatCarsWinformsClient
         TextureManager _textureManager = new TextureManager();
         SoundManager _soundManager = new SoundManager();
         CombatCarsWinFormsClientEngine.Font _titleFont;
+        CombatCarsWinFormsClientEngine.Font _generalFont;
 
         public MainForm()
         {
@@ -43,7 +44,8 @@ namespace CombatCarsWinformsClient
 
         private void InitializeFonts()
         {
-            _titleFont = new CombatCarsWinFormsClientEngine.Font(_textureManager.Get("font"), FontParser.Parse("font.fnt"));
+            _titleFont = new CombatCarsWinFormsClientEngine.Font(_textureManager.Get("calibrifont"), FontParser.Parse("CalibriFont.fnt"));
+            _generalFont = new CombatCarsWinFormsClientEngine.Font(_textureManager.Get("font"), FontParser.Parse("font.fnt"));
         }
 
         private void InitializeSounds()
@@ -54,20 +56,22 @@ namespace CombatCarsWinformsClient
 
         private void InitializeGameState()
         {
-            _system.AddState(EnumState.Splash, new SplashScreenState(_system));
-            _system.AddState(EnumState.Title, new TitleMenuState());
-            _system.AddState(EnumState.Spritetest, new DrawSpriteState(_textureManager));
-            _system.AddState(EnumState.FPS, new FPSState(_textureManager));
-            _system.AddState(EnumState.Wave, new WaveFormGraphState());
-            _system.AddState(EnumState.SpecialEffect, new SpecialEffectState(_textureManager));
-            _system.AddState(EnumState.CircleIntersection, new CircleIntersectionState(_input));
-            _system.AddState(EnumState.RectangleIntersection, new RectangleIntersectionState(_input));
-            _system.AddState(EnumState.Tween, new TweenState(_textureManager));
-            _system.AddState(EnumState.Matrix, new MatrixState(_textureManager));
-            _system.AddState(EnumState.Sound, new SoundState(_soundManager));
-            _system.AddState(EnumState.Input, new InputState(_input));
 
-            _system.ChangeState(EnumState.Input);
+            //_system.AddState(EnumState.Splash, new SplashScreenState(_system));
+            //_system.AddState(EnumState.Title, new TitleMenuState());
+            //_system.AddState(EnumState.Spritetest, new DrawSpriteState(_textureManager));
+            _system.AddState(EnumState.FPS, new FPSState(_textureManager));
+            //_system.AddState(EnumState.Wave, new WaveFormGraphState());
+            //_system.AddState(EnumState.SpecialEffect, new SpecialEffectState(_textureManager));
+            //_system.AddState(EnumState.CircleIntersection, new CircleIntersectionState(_input));
+            //_system.AddState(EnumState.RectangleIntersection, new RectangleIntersectionState(_input));
+            //_system.AddState(EnumState.Tween, new TweenState(_textureManager));
+            //_system.AddState(EnumState.Matrix, new MatrixState(_textureManager));
+            //_system.AddState(EnumState.Sound, new SoundState(_soundManager));
+            //_system.AddState(EnumState.Input, new InputState(_input));
+
+            _system.AddState(EnumState.StartMenu, new StartMenuState(_titleFont, _generalFont, _input));
+            _system.ChangeState(EnumState.StartMenu);
         }
 
         private void InitializeTextures()
@@ -80,6 +84,7 @@ namespace CombatCarsWinformsClient
             _textureManager.LoadTexture("face", "Ninja_Awesome_Smiley_by_E_rap.png");
             _textureManager.LoadTexture("face_alpha", "364px-Ezio-transparent.png");
             _textureManager.LoadTexture("font", "font_0.tga");
+            _textureManager.LoadTexture("calibrifont", "CalibriFont_0.tga");
         }
 
         private void InitializeDisplay()

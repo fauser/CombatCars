@@ -18,6 +18,7 @@ namespace CombatCarsWinFormsClientEngine
         Tween,
         Matrix,
         Sound,
-        Input
+        Input,
+        StartMenu
     }
 }

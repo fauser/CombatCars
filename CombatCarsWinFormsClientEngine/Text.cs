@@ -41,7 +41,7 @@ namespace CombatCarsWinFormsClientEngine
             _text = text;
             _font = font;
             _maxWidth = maxWidth;
-            _color = new Color(1, 1, 1, 1);
+            _color = new Color(0, 0, 0, 1);
             CreateText(0, 0, _maxWidth);
         }
 
@@ -53,8 +53,8 @@ namespace CombatCarsWinFormsClientEngine
         private void CreateText(double x, double y, double maxWidth)
         {
             _bitmapText.Clear();
-            double currentX = x;
-            double currentY = y;
+            double currentX = 0;
+            double currentY = 0;
             string[] words = _text.Split(' ');
 
             foreach (string word in words)
@@ -73,13 +73,11 @@ namespace CombatCarsWinFormsClientEngine
                     CharacterSprite sprite = _font.CreateSprite(c);
                     float xOffset = ((float)sprite.Data.XOffset) / 2;
                     float yOffset = (((float)sprite.Data.Height) * 0.5f) + ((float)sprite.Data.YOffset);
-                    sprite.Sprite.SetPosition(++currentX + xOffset, y - currentY - yOffset);
+                    sprite.Sprite.SetPosition(x + currentX + xOffset, y - currentY - yOffset);
                     currentX += sprite.Data.XAdvance;
                     _bitmapText.Add(sprite);
                 }
-
             }
-
 
             _dimensions = _font.MeasureFont(_text, _maxWidth);
             _dimensions.Y = currentY;
@@ -107,7 +105,5 @@ namespace CombatCarsWinFormsClientEngine
                 s.Sprite.SetColor(_color);
             }
         }
-
-
     }
 }

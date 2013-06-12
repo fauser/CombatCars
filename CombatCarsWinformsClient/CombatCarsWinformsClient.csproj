@@ -78,6 +78,7 @@
     <Compile Include="State\SoundState.cs" />
     <Compile Include="State\SpecialEffectState.cs" />
     <Compile Include="State\SplashScreenState.cs" />
+    <Compile Include="State\StartMenuState.cs" />
     <Compile Include="State\TweenState.cs" />
     <Compile Include="State\FPSState.cs" />
     <Compile Include="State\TitleMenuState.cs" />
@@ -94,6 +95,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="CalibriFont.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="CalibriFont_0.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="font.fnt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

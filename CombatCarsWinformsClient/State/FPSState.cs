@@ -11,7 +11,7 @@ namespace CombatCarsWinformsClient.State
     {
         TextureManager _textureManager;
         Font _font;
-        Text _fpsText;
+        Text _fpsText, _fpsText2;
         Renderer _renderer = new Renderer();
         FramesPerScond _fps = new FramesPerScond();
 
@@ -20,11 +20,13 @@ namespace CombatCarsWinformsClient.State
             _textureManager = textureManager;
             _font = new Font(textureManager.Get("font"), FontParser.Parse("font.fnt"));
             _fpsText = new Text("FPS:", _font);
+            _fpsText2 = new Text("FPS2:", _font);
+            _fpsText2.SetPosition(100, -50);
         }
 
         void IGameObject.Update(double elapsedTime)
         {
-            _fps.Process(elapsedTime);
+            _fps.Update(elapsedTime);
         }
 
         void IGameObject.Render()
@@ -39,6 +41,7 @@ namespace CombatCarsWinformsClient.State
             for (int i = 0; i < 1000; i++)
             {
                 _renderer.DrawText(_fpsText);
+                _renderer.DrawText(_fpsText2);
             }
         }
     }

@@ -11,10 +11,10 @@ namespace CombatCarsWinformsClient
         double _timePassed = 0;
 
         public double CurrentFPS { get; set; }
-        public void Process(double timeElapsed)
+        public void Update(double elapsedTime)
         {
             _numberOfFrames++;
-            _timePassed = _timePassed + timeElapsed;
+            _timePassed = _timePassed + elapsedTime;
             if (_timePassed > 1)
             {
                 CurrentFPS = (double)_numberOfFrames / _timePassed;
