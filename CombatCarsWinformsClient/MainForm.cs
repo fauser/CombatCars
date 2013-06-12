@@ -46,8 +46,8 @@ namespace CombatCarsWinformsClient
 
         private void InitializeFonts()
         {
-            _titleFont = new CombatCarsWinFormsClientEngine.Font(_textureManager.Get(EnumTexture.Calibri40), FontParser.Parse("Calibri40.fnt"));
-            _generalFont = new CombatCarsWinFormsClientEngine.Font(_textureManager.Get(EnumTexture.Calibri30), FontParser.Parse("Calibri30.fnt"));
+            _titleFont = new CombatCarsWinFormsClientEngine.Font(_textureManager.Get(EnumTexture.Calibri40), FontParser.Parse(@"Font\Calibri40.fnt"));
+            _generalFont = new CombatCarsWinFormsClientEngine.Font(_textureManager.Get(EnumTexture.Calibri30), FontParser.Parse(@"Font\Calibri30.fnt"));
         }
 
         private void InitializeGameData()
@@ -58,8 +58,8 @@ namespace CombatCarsWinformsClient
 
         private void InitializeSounds()
         {
-            _soundManager.LoadSound("engine", "Engine.wav");
-            _soundManager.LoadSound("gun", "Gun.wav");
+            _soundManager.LoadSound("engine", @"Sound\Engine.wav");
+            _soundManager.LoadSound("gun", @"Sound\Gun.wav");
         }
 
         private void InitializeGameState()
@@ -75,14 +75,14 @@ namespace CombatCarsWinformsClient
             //_system.AddState(EnumState.RectangleIntersection, new RectangleIntersectionState(_input));
             //_system.AddState(EnumState.Tween, new TweenState(_textureManager));
             //_system.AddState(EnumState.Matrix, new MatrixState(_textureManager));
-            //_system.AddState(EnumState.Sound, new SoundState(_soundManager));
+            _system.AddState(EnumState.Sound, new SoundState(_soundManager));
             //_system.AddState(EnumState.Input, new InputState(_input));
 
             _system.AddState(EnumState.StartMenu, new StartMenuState(_system, _input, _generalFont, _titleFont));
             _system.AddState(EnumState.InnerGame, new InnerGameState(_system, _input, _persistandData, _generalFont));
             _system.AddState(EnumState.GameOver, new GameOverState(_system, _input, _persistandData, _generalFont, _titleFont));
 
-            _system.ChangeState(EnumState.StartMenu);
+            _system.ChangeState(EnumState.Sound);
         }
 
         private void InitializeTextures()
@@ -92,10 +92,10 @@ namespace CombatCarsWinformsClient
             Ilut.ilutInit();
             Ilut.ilutRenderer(Ilut.ILUT_OPENGL);
 
-            _textureManager.LoadTexture(EnumTexture.Face, "Ninja_Awesome_Smiley_by_E_rap.png");
-            _textureManager.LoadTexture(EnumTexture.FaceAlpha, "364px-Ezio-transparent.png");
-            _textureManager.LoadTexture(EnumTexture.Calibri40, "Calibri40_0.tga");
-            _textureManager.LoadTexture(EnumTexture.Calibri30, "Calibri30_0.tga");
+            _textureManager.LoadTexture(EnumTexture.Face, @"Image\Ninja_Awesome_Smiley_by_E_rap.png");
+            _textureManager.LoadTexture(EnumTexture.FaceAlpha, @"Image\364px-Ezio-transparent.png");
+            _textureManager.LoadTexture(EnumTexture.Calibri40, @"Font\Calibri40_0.tga");
+            _textureManager.LoadTexture(EnumTexture.Calibri30, @"Font\Calibri30_0.tga");
         }
 
         private void InitializeDisplay()

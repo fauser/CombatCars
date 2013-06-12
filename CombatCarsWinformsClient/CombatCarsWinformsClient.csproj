@@ -99,16 +99,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Calibri30.fnt">
+    <None Include="Font\Calibri30.fnt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Calibri30_0.tga">
+    <None Include="Font\Calibri30_0.tga">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Calibri40.fnt">
+    <None Include="Font\Calibri40.fnt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Calibri40_0.tga">
+    <None Include="Font\Calibri40_0.tga">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
@@ -122,16 +122,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="364px-Ezio-transparent.png">
+    <Content Include="Image\364px-Ezio-transparent.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Engine.wav">
+    <Content Include="Sound\Engine.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Gun.wav">
+    <Content Include="Sound\Gun.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Ninja_Awesome_Smiley_by_E_rap.png">
+    <Content Include="Image\Ninja_Awesome_Smiley_by_E_rap.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
