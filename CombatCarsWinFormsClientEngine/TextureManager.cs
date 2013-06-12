@@ -9,14 +9,14 @@ namespace CombatCarsWinFormsClientEngine
 {
     public class TextureManager : IDisposable
     {
-        Dictionary<string, Texture> _textureDatabase = new Dictionary<string, Texture>();
+        Dictionary<EnumTexture, Texture> _textureDatabase = new Dictionary<EnumTexture, Texture>();
 
-        public Texture Get(string textureId)
+        public Texture Get(EnumTexture textureId)
         {
             return _textureDatabase[textureId];
         }
 
-        public void LoadTexture(string textureId, string path)
+        public void LoadTexture(EnumTexture textureId, string path)
         {
             int devilId = 0;
             Il.ilGenImages(1, out devilId);

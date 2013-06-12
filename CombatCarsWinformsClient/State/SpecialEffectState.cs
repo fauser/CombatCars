@@ -14,9 +14,9 @@ namespace CombatCarsWinformsClient.State
         Renderer _renderer = new Renderer();
         double _totalTime = 0;
 
-        public SpecialEffectState(TextureManager manager)
+        public SpecialEffectState(TextureManager manager, Font font)
         {
-            _font = new Font(manager.Get("font"), FontParser.Parse("font.fnt"));
+            _font = font;
             _text = new Text("Hello", _font);
         }
 

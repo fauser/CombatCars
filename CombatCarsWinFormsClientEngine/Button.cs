@@ -25,7 +25,7 @@ namespace CombatCarsWinFormsClientEngine
         {
             _onPressEvent = onPressEvent;
             _label = label;
-            _label.SetColor(new Color(1, 1, 1, 1));
+            _label.SetColor(new Color(0, 0, 0, 1));
             UpdatePosition();
         }
 
@@ -41,7 +41,7 @@ namespace CombatCarsWinFormsClientEngine
 
         public void OnLoseFocus()
         {
-            _label.SetColor(new Color(1, 1, 1, 1));
+            _label.SetColor(new Color(0, 0, 0, 1));
         }
 
         public void OnPress()

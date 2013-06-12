@@ -24,6 +24,7 @@ namespace CombatCarsWinformsClient
         SoundManager _soundManager = new SoundManager();
         CombatCarsWinFormsClientEngine.Font _titleFont;
         CombatCarsWinFormsClientEngine.Font _generalFont;
+        PersistentGameData _persistandData = new PersistentGameData();
 
         public MainForm()
         {
@@ -36,6 +37,7 @@ namespace CombatCarsWinformsClient
             InitializeDisplay();
             InitializeSounds();
             InitializeTextures();
+            InitializeGameData();
             InitializeFonts();
             InitializeGameState();
 
@@ -44,8 +46,14 @@ namespace CombatCarsWinformsClient
 
         private void InitializeFonts()
         {
-            _titleFont = new CombatCarsWinFormsClientEngine.Font(_textureManager.Get("calibrifont"), FontParser.Parse("CalibriFont.fnt"));
-            _generalFont = new CombatCarsWinFormsClientEngine.Font(_textureManager.Get("font"), FontParser.Parse("font.fnt"));
+            _titleFont = new CombatCarsWinFormsClientEngine.Font(_textureManager.Get(EnumTexture.Calibri40), FontParser.Parse("Calibri40.fnt"));
+            _generalFont = new CombatCarsWinFormsClientEngine.Font(_textureManager.Get(EnumTexture.Calibri30), FontParser.Parse("Calibri30.fnt"));
+        }
+
+        private void InitializeGameData()
+        {
+            LevelDescription level = new LevelDescription { Time = 1 };
+            _persistandData.CurrentLevel = level;
         }
 
         private void InitializeSounds()
@@ -60,9 +68,9 @@ namespace CombatCarsWinformsClient
             //_system.AddState(EnumState.Splash, new SplashScreenState(_system));
             //_system.AddState(EnumState.Title, new TitleMenuState());
             //_system.AddState(EnumState.Spritetest, new DrawSpriteState(_textureManager));
-            _system.AddState(EnumState.FPS, new FPSState(_textureManager));
+            //_system.AddState(EnumState.FPS, new FPSState(_textureManager, _generalFont));
             //_system.AddState(EnumState.Wave, new WaveFormGraphState());
-            //_system.AddState(EnumState.SpecialEffect, new SpecialEffectState(_textureManager));
+            //_system.AddState(EnumState.SpecialEffect, new SpecialEffectState(_textureManager, _generalFont));
             //_system.AddState(EnumState.CircleIntersection, new CircleIntersectionState(_input));
             //_system.AddState(EnumState.RectangleIntersection, new RectangleIntersectionState(_input));
             //_system.AddState(EnumState.Tween, new TweenState(_textureManager));
@@ -70,7 +78,10 @@ namespace CombatCarsWinformsClient
             //_system.AddState(EnumState.Sound, new SoundState(_soundManager));
             //_system.AddState(EnumState.Input, new InputState(_input));
 
-            _system.AddState(EnumState.StartMenu, new StartMenuState(_titleFont, _generalFont, _input));
+            _system.AddState(EnumState.StartMenu, new StartMenuState(_system, _input, _generalFont, _titleFont));
+            _system.AddState(EnumState.InnerGame, new InnerGameState(_system, _input, _persistandData, _generalFont));
+            _system.AddState(EnumState.GameOver, new GameOverState(_system, _input, _persistandData, _generalFont, _titleFont));
+
             _system.ChangeState(EnumState.StartMenu);
         }
 
@@ -81,10 +92,10 @@ namespace CombatCarsWinformsClient
             Ilut.ilutInit();
             Ilut.ilutRenderer(Ilut.ILUT_OPENGL);
 
-            _textureManager.LoadTexture("face", "Ninja_Awesome_Smiley_by_E_rap.png");
-            _textureManager.LoadTexture("face_alpha", "364px-Ezio-transparent.png");
-            _textureManager.LoadTexture("font", "font_0.tga");
-            _textureManager.LoadTexture("calibrifont", "CalibriFont_0.tga");
+            _textureManager.LoadTexture(EnumTexture.Face, "Ninja_Awesome_Smiley_by_E_rap.png");
+            _textureManager.LoadTexture(EnumTexture.FaceAlpha, "364px-Ezio-transparent.png");
+            _textureManager.LoadTexture(EnumTexture.Calibri40, "Calibri40_0.tga");
+            _textureManager.LoadTexture(EnumTexture.Calibri30, "Calibri30_0.tga");
         }
 
         private void InitializeDisplay()

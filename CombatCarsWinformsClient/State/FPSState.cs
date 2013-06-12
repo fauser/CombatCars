@@ -15,10 +15,10 @@ namespace CombatCarsWinformsClient.State
         Renderer _renderer = new Renderer();
         FramesPerScond _fps = new FramesPerScond();
 
-        public FPSState(TextureManager textureManager)
+        public FPSState(TextureManager textureManager, Font font)
         {
             _textureManager = textureManager;
-            _font = new Font(textureManager.Get("font"), FontParser.Parse("font.fnt"));
+            _font = font;
             _fpsText = new Text("FPS:", _font);
             _fpsText2 = new Text("FPS2:", _font);
             _fpsText2.SetPosition(100, -50);

@@ -14,7 +14,7 @@ namespace CombatCarsWinformsClient.State
 
         public MatrixState(TextureManager textureManager)
         {
-            _faceSprite.Texture = textureManager.Get("face");
+            _faceSprite.Texture = textureManager.Get(EnumTexture.Face);
             Gl.glEnable(Gl.GL_TEXTURE_2D);
 
             Matrix m = new Matrix();

@@ -15,7 +15,7 @@ namespace CombatCarsWinformsClient.State
 
         public TweenState(TextureManager textureManager)
         {
-            _sprite.Texture = textureManager.Get("face");
+            _sprite.Texture = textureManager.Get(EnumTexture.Face);
         }
 
         void IGameObject.Update(double elapsedTime)

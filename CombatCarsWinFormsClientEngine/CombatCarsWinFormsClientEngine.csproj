@@ -63,6 +63,7 @@
     <Compile Include="CharacterSprite.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="EnumState.cs" />
+    <Compile Include="EnumTexture.cs" />
     <Compile Include="Font.cs" />
     <Compile Include="FontParser.cs" />
     <Compile Include="FastLoop.cs" />

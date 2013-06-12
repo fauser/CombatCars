@@ -14,16 +14,18 @@ namespace CombatCarsWinformsClient.State
         Text _title;
         CombatCarsWinFormsClientEngine.Font _generalFont;
         Input _input;
+        StateSystem _system;
         VerticalMenu _menu;
 
-        public StartMenuState(CombatCarsWinFormsClientEngine.Font titleFont, CombatCarsWinFormsClientEngine.Font generalFont, Input input)
+        public StartMenuState(StateSystem system, Input input, CombatCarsWinFormsClientEngine.Font generalFont, CombatCarsWinFormsClientEngine.Font titleFont)
         {
+            _system = system;
             _input = input;
             _generalFont = generalFont;
             InitializeMenu();
 
             _title = new Text("Shooter", titleFont);
-            _title.SetColor(new CombatCarsWinFormsClientEngine.Color(1, 1, 1, 1));
+            _title.SetColor(new CombatCarsWinFormsClientEngine.Color(0, 0, 0, 1));
             _title.SetPosition(-_title.Width / 2, 300);
         }
 
@@ -32,7 +34,7 @@ namespace CombatCarsWinformsClient.State
             _menu = new VerticalMenu(1, 150, _input);
             Button startGame = new Button(delegate(object o, EventArgs e)
             {
-
+                _system.ChangeState(EnumState.InnerGame);
             }, new Text("Start", _generalFont));
 
             Button exitGame = new Button(delegate(object o, EventArgs e)
@@ -51,7 +53,7 @@ namespace CombatCarsWinformsClient.State
 
         void IGameObject.Render()
         {
-            Gl.glClearColor(0, 0, 0, 0);
+            Gl.glClearColor(1, 1, 1, 0);
 
             Gl.glClear(Gl.GL_COLOR_BUFFER_BIT);
             _renderer.DrawText(_title);

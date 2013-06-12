@@ -19,6 +19,8 @@ namespace CombatCarsWinFormsClientEngine
         Matrix,
         Sound,
         Input,
-        StartMenu
+        StartMenu,
+        InnerGame,
+        GameOver
     }
 }
