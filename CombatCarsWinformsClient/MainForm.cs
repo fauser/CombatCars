@@ -75,14 +75,14 @@ namespace CombatCarsWinformsClient
             //_system.AddState(EnumState.RectangleIntersection, new RectangleIntersectionState(_input));
             //_system.AddState(EnumState.Tween, new TweenState(_textureManager));
             //_system.AddState(EnumState.Matrix, new MatrixState(_textureManager));
-            _system.AddState(EnumState.Sound, new SoundState(_soundManager));
+            //_system.AddState(EnumState.Sound, new SoundState(_soundManager));
             //_system.AddState(EnumState.Input, new InputState(_input));
 
             _system.AddState(EnumState.StartMenu, new StartMenuState(_system, _input, _generalFont, _titleFont));
             _system.AddState(EnumState.InnerGame, new InnerGameState(_system, _input, _persistandData, _generalFont));
             _system.AddState(EnumState.GameOver, new GameOverState(_system, _input, _persistandData, _generalFont, _titleFont));
 
-            _system.ChangeState(EnumState.Sound);
+            _system.ChangeState(EnumState.StartMenu);
         }
 
         private void InitializeTextures()
@@ -108,6 +108,7 @@ namespace CombatCarsWinformsClient
             else
             {
                 ClientSize = new Size(1280, 720);
+                ControlBox = false;
             }
 
             Setup2DGraphics(ClientSize.Width, ClientSize.Height);
