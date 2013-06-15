@@ -10,6 +10,10 @@ namespace GenericGameEngine
         Calibri40,
         Face,
         FaceAlpha,
-        Calibri30
+        Calibri30,
+        PlayerShip,
+        BackGround,
+        Planet,
+        Enemy
     }
 }

@@ -19,6 +19,16 @@ namespace GenericGameEngine
         double _positionX = 0;
         double _positionY = 0;
 
+        public double ScaleX
+        {
+            get { return _scaleX; }
+        }
+
+        public double ScaleY
+        {
+            get { return _scaleY; }
+        }
+
         public Sprite()
         {
             InitVertexPositions(new Vector(0, 0, 0), 1, 1);

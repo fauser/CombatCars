@@ -52,7 +52,7 @@ namespace CombatCarsWinformsClient
 
         private void InitializeGameData()
         {
-            LevelDescription level = new LevelDescription { Time = 1 };
+            LevelDescription level = new LevelDescription { Time = 30 };
             _persistandData.CurrentLevel = level;
         }
 
@@ -79,7 +79,7 @@ namespace CombatCarsWinformsClient
             //_system.AddState(EnumState.Input, new InputState(_input));
 
             _system.AddState(EnumState.StartMenu, new StartMenuState(_system, _input, _generalFont, _titleFont));
-            _system.AddState(EnumState.InnerGame, new InnerGameState(_system, _input, _persistandData, _generalFont));
+            _system.AddState(EnumState.InnerGame, new InnerGameState(_system, _input, _textureManager, _persistandData, _generalFont));
             _system.AddState(EnumState.GameOver, new GameOverState(_system, _input, _persistandData, _generalFont, _titleFont));
 
             _system.ChangeState(EnumState.StartMenu);
@@ -94,8 +94,12 @@ namespace CombatCarsWinformsClient
 
             _textureManager.LoadTexture(EnumTexture.Face, @"Image\Ninja_Awesome_Smiley_by_E_rap.png");
             _textureManager.LoadTexture(EnumTexture.FaceAlpha, @"Image\364px-Ezio-transparent.png");
+            _textureManager.LoadTexture(EnumTexture.PlayerShip, @"Image\viper_mark_ii.png");
             _textureManager.LoadTexture(EnumTexture.Calibri40, @"Font\Calibri40_0.tga");
             _textureManager.LoadTexture(EnumTexture.Calibri30, @"Font\Calibri30_0.tga");
+            _textureManager.LoadTexture(EnumTexture.BackGround, @"Image\background.jpg");
+            _textureManager.LoadTexture(EnumTexture.Planet, @"Image\Virtual Planets Earth Planet 03.png");
+            _textureManager.LoadTexture(EnumTexture.Enemy, @"Image\kspaceduel.png");
         }
 
         private void InitializeDisplay()

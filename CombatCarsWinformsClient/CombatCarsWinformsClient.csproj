@@ -75,6 +75,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enemy.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="LevelDescription.cs" />
     <Compile Include="PersistentGameData.cs" />
     <Compile Include="FramesPerScond.cs" />
@@ -84,8 +87,10 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlayerCharacter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScrollingBackground.cs" />
     <Compile Include="State\CircleIntersectionState.cs" />
     <Compile Include="State\DrawSpriteState.cs" />
     <Compile Include="State\FPSState.cs" />
@@ -101,6 +106,18 @@
     <Compile Include="State\TitleMenuState.cs" />
     <Compile Include="State\TweenState.cs" />
     <Compile Include="State\WaveFormGraphState.cs" />
+    <Content Include="Image\background.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\kspaceduel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\viper_mark_ii.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\Virtual Planets Earth Planet 03.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Referenced Assemblies\Tao.DevIl.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -166,12 +183,6 @@
     <Folder Include="bin\Release\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CombatCarsWinFormsClientEngine\GenericGameEngine.csproj">
-      <Project>{a8bad259-87ce-49bc-8845-c3213f94a973}</Project>
-      <Name>GenericGameEngine</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
@@ -192,6 +203,12 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GenericGameEngine\GenericGameEngine.csproj">
+      <Project>{a8bad259-87ce-49bc-8845-c3213f94a973}</Project>
+      <Name>GenericGameEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
