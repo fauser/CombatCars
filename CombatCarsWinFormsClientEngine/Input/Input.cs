@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CombatCarsWinFormsClientEngine.Input
+namespace GenericGameEngine.Input
 {
     public class Input
     {
-        public CombatCarsWinFormsClientEngine.Point MousePosition { get; set; }
+        public GenericGameEngine.Point MousePosition { get; set; }
         public Mouse Mouse { get; set; }
         public Keyboard Keyboard { get; set; }
 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Tao.OpenAl;
 
-namespace CombatCarsWinFormsClientEngine
+namespace GenericGameEngine
 {
     public class SoundManager : IDisposable
     {

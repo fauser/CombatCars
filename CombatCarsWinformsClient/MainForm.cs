@@ -8,9 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 using Tao.OpenGl;
 using Tao.DevIl;
-using CombatCarsWinFormsClientEngine;
+using GenericGameEngine;
 using CombatCarsWinformsClient.State;
-using CombatCarsWinFormsClientEngine.Input;
+using GenericGameEngine.Input;
 
 namespace CombatCarsWinformsClient
 {
@@ -22,8 +22,8 @@ namespace CombatCarsWinformsClient
         Input _input = new Input();
         TextureManager _textureManager = new TextureManager();
         SoundManager _soundManager = new SoundManager();
-        CombatCarsWinFormsClientEngine.Font _titleFont;
-        CombatCarsWinFormsClientEngine.Font _generalFont;
+        GenericGameEngine.Font _titleFont;
+        GenericGameEngine.Font _generalFont;
         PersistentGameData _persistandData = new PersistentGameData();
 
         public MainForm()
@@ -46,8 +46,8 @@ namespace CombatCarsWinformsClient
 
         private void InitializeFonts()
         {
-            _titleFont = new CombatCarsWinFormsClientEngine.Font(_textureManager.Get(EnumTexture.Calibri40), FontParser.Parse(@"Font\Calibri40.fnt"));
-            _generalFont = new CombatCarsWinFormsClientEngine.Font(_textureManager.Get(EnumTexture.Calibri30), FontParser.Parse(@"Font\Calibri30.fnt"));
+            _titleFont = new GenericGameEngine.Font(_textureManager.Get(EnumTexture.Calibri40), FontParser.Parse(@"Font\Calibri40.fnt"));
+            _generalFont = new GenericGameEngine.Font(_textureManager.Get(EnumTexture.Calibri30), FontParser.Parse(@"Font\Calibri30.fnt"));
         }
 
         private void InitializeGameData()

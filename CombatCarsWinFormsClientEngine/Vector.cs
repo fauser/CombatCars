@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace CombatCarsWinFormsClientEngine
+namespace GenericGameEngine
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct Vector

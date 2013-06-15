@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace CombatCarsWinFormsClientEngine.Input
+namespace GenericGameEngine.Input
 {
     public class Mouse
     {
@@ -123,7 +123,7 @@ namespace CombatCarsWinFormsClientEngine.Input
             System.Drawing.Point mousePos = Cursor.Position;
             mousePos = _openGLControl.PointToClient(mousePos);
 
-            CombatCarsWinFormsClientEngine.Point adjustedMousePoint = new CombatCarsWinFormsClientEngine.Point();
+            GenericGameEngine.Point adjustedMousePoint = new GenericGameEngine.Point();
             adjustedMousePoint.X = (float)mousePos.X - ((float)_parentForm.ClientSize.Width / 2);
             adjustedMousePoint.Y = ((float)_parentForm.ClientSize.Height / 2) - (float)mousePos.Y;
             Position = adjustedMousePoint;

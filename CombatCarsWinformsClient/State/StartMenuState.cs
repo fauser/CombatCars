@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CombatCarsWinFormsClientEngine;
-using CombatCarsWinFormsClientEngine.Input;
+using GenericGameEngine;
+using GenericGameEngine.Input;
 using Tao.OpenGl;
 
 namespace CombatCarsWinformsClient.State
@@ -12,12 +12,12 @@ namespace CombatCarsWinformsClient.State
     {
         Renderer _renderer = new Renderer();
         Text _title;
-        CombatCarsWinFormsClientEngine.Font _generalFont;
+        GenericGameEngine.Font _generalFont;
         Input _input;
         StateSystem _system;
         VerticalMenu _menu;
 
-        public StartMenuState(StateSystem system, Input input, CombatCarsWinFormsClientEngine.Font generalFont, CombatCarsWinFormsClientEngine.Font titleFont)
+        public StartMenuState(StateSystem system, Input input, GenericGameEngine.Font generalFont, GenericGameEngine.Font titleFont)
         {
             _system = system;
             _input = input;
@@ -25,7 +25,7 @@ namespace CombatCarsWinformsClient.State
             InitializeMenu();
 
             _title = new Text("Shooter", titleFont);
-            _title.SetColor(new CombatCarsWinFormsClientEngine.Color(0, 0, 0, 1));
+            _title.SetColor(new GenericGameEngine.Color(0, 0, 0, 1));
             _title.SetPosition(-_title.Width / 2, 300);
         }
 

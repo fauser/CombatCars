@@ -5,7 +5,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace CombatCarsWinFormsClientEngine.Input
+namespace GenericGameEngine.Input
 {
     public class Keyboard
     {

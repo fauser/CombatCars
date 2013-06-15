@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace CombatCarsWinFormsClientEngine
+namespace GenericGameEngine
 {
     public class FontParser
     {

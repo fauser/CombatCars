@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Tao.OpenGl;
 
-namespace CombatCarsWinFormsClientEngine
+namespace GenericGameEngine
 {
     public class Batch
     {

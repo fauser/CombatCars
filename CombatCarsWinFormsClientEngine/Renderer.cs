@@ -5,7 +5,7 @@ using System.Text;
 using Tao.OpenGl;
 using System.Runtime.InteropServices;
 
-namespace CombatCarsWinFormsClientEngine
+namespace GenericGameEngine
 {
     public class Renderer
     {

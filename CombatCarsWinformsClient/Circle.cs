@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CombatCarsWinFormsClientEngine;
+using GenericGameEngine;
 using Tao.OpenGl;
 
 namespace CombatCarsWinformsClient
@@ -44,7 +44,7 @@ namespace CombatCarsWinformsClient
             Gl.glEnd();
         }
 
-        public bool Intersects(CombatCarsWinFormsClientEngine.Point point)
+        public bool Intersects(GenericGameEngine.Point point)
         {
             Vector vPoint = new Vector(point.X, point.Y, 0);
             Vector vFromCircleToPoint = Position - vPoint;

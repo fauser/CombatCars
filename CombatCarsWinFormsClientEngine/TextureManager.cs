@@ -5,7 +5,7 @@ using System.Text;
 using Tao.DevIl;
 using Tao.OpenGl;
 
-namespace CombatCarsWinFormsClientEngine
+namespace GenericGameEngine
 {
     public class TextureManager : IDisposable
     {

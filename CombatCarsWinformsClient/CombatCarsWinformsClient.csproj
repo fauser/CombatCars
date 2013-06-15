@@ -169,9 +169,9 @@
     <Folder Include="bin\Release\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CombatCarsWinFormsClientEngine\CombatCarsWinFormsClientEngine.csproj">
+    <ProjectReference Include="..\CombatCarsWinFormsClientEngine\GenericGameEngine.csproj">
       <Project>{a8bad259-87ce-49bc-8845-c3213f94a973}</Project>
-      <Name>CombatCarsWinFormsClientEngine</Name>
+      <Name>GenericGameEngine</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CombatCarsWinFormsClientEngine;
-using CombatCarsWinFormsClientEngine.Input;
+using GenericGameEngine;
+using GenericGameEngine.Input;
 using Tao.OpenGl;
 
 namespace CombatCarsWinformsClient.State
@@ -48,7 +48,7 @@ namespace CombatCarsWinformsClient.State
         private void FormatText(Text _text, int yPosition)
         {
             _text.SetPosition(-_text.Width / 2, yPosition);
-            _text.SetColor(new CombatCarsWinFormsClientEngine.Color(1, 0, 0, 1));
+            _text.SetColor(new GenericGameEngine.Color(1, 0, 0, 1));
         }
 
         void IGameObject.Update(double elapsedTime)

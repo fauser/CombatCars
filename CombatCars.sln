@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombatCarsAPITest", "Combat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombatCarsWinformsClient", "CombatCarsWinformsClient\CombatCarsWinformsClient.csproj", "{E05E766E-6F9A-4A57-9DFE-5D9443937DC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombatCarsWinFormsClientEngine", "CombatCarsWinFormsClientEngine\CombatCarsWinFormsClientEngine.csproj", "{A8BAD259-87CE-49BC-8845-C3213F94A973}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericGameEngine", "CombatCarsWinFormsClientEngine\GenericGameEngine.csproj", "{A8BAD259-87CE-49BC-8845-C3213F94A973}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CombatCarsWinFormsClientEngine;
+using GenericGameEngine;
 using Tao.OpenGl;
 
 namespace CombatCarsWinformsClient
@@ -37,7 +37,7 @@ namespace CombatCarsWinformsClient
             Gl.glEnd();
         }
 
-        public bool Intersects(CombatCarsWinFormsClientEngine.Point point)
+        public bool Intersects(GenericGameEngine.Point point)
         {
             if (point.X >= BottomLeft.X && point.X <= TopRight.X && point.Y <= TopRight.Y && point.Y >= BottomLeft.Y)
             {

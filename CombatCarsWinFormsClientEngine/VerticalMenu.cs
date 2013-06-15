@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CombatCarsWinFormsClientEngine.Input;
+using GenericGameEngine.Input;
 using System.Windows.Forms;
 
-namespace CombatCarsWinFormsClientEngine
+namespace GenericGameEngine
 {
     public class VerticalMenu
     {

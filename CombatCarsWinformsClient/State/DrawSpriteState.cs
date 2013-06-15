@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CombatCarsWinFormsClientEngine;
+using GenericGameEngine;
 using Tao.OpenGl;
 
 namespace CombatCarsWinformsClient.State
@@ -23,7 +23,7 @@ namespace CombatCarsWinformsClient.State
 
             _testSprite2.Texture = _textureManager.Get(EnumTexture.FaceAlpha);
             _testSprite2.SetPosition(-256, 0);
-            _testSprite2.SetColor(new CombatCarsWinFormsClientEngine.Color(1, 0, 0, 1));
+            _testSprite2.SetColor(new GenericGameEngine.Color(1, 0, 0, 1));
         }
 
         void IGameObject.Update(double elapsedTime)

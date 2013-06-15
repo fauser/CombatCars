@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CombatCarsWinFormsClientEngine;
+using GenericGameEngine;
 using Tao.OpenGl;
 
 namespace CombatCarsWinformsClient.State
@@ -63,7 +63,7 @@ namespace CombatCarsWinformsClient.State
             _wavyNumberG = 0.5f + _wavyNumberG * 0.5f;
             _wavyNumberB = 0.5f + _wavyNumberB * 0.5f;
 
-            _text.SetColor(new CombatCarsWinFormsClientEngine.Color(_wavyNumberR, _wavyNumberG, _wavyNumberB, 1));
+            _text.SetColor(new GenericGameEngine.Color(_wavyNumberR, _wavyNumberG, _wavyNumberB, 1));
         }
 
         private void RedPulsatingText()
@@ -71,7 +71,7 @@ namespace CombatCarsWinformsClient.State
             double frequency = 7;
             float _wavyNumber = (float)Math.Sin(_totalTime * frequency);
             _wavyNumber = 0.5f + _wavyNumber * 0.5f;
-            _text.SetColor(new CombatCarsWinFormsClientEngine.Color(1, 0, 0, _wavyNumber));
+            _text.SetColor(new GenericGameEngine.Color(1, 0, 0, _wavyNumber));
         }
 
         void IGameObject.Render()
