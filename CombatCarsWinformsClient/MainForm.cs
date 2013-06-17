@@ -100,6 +100,8 @@ namespace CombatCarsWinformsClient
             _textureManager.LoadTexture(EnumTexture.BackGround, @"Image\background.jpg");
             _textureManager.LoadTexture(EnumTexture.Planet, @"Image\Virtual Planets Earth Planet 03.png");
             _textureManager.LoadTexture(EnumTexture.Enemy, @"Image\kspaceduel.png");
+            _textureManager.LoadTexture(EnumTexture.Bullet, @"Image\bullet_yellow.png");
+            _textureManager.LoadTexture(EnumTexture.Explosion, @"Image\explode.tga");
         }
 
         private void InitializeDisplay()

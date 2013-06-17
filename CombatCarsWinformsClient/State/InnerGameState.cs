@@ -38,7 +38,7 @@ namespace CombatCarsWinformsClient.State
 
         void IGameObject.Update(double elapsedTime)
         {
-            _level.Update(elapsedTime);
+            _level.Update(elapsedTime, _gameTime);
 
             _gameTime -= elapsedTime;
             if (_gameTime <= 0)
@@ -58,7 +58,7 @@ namespace CombatCarsWinformsClient.State
             if (_input.Keyboard.IsKeyPressed(System.Windows.Forms.Keys.Escape))
             {
                 _gameData.JustWon = false;
-                _system.ChangeState(EnumState.GameOver);
+                _system.ChangeState(EnumState.StartMenu);
             }
         }
 

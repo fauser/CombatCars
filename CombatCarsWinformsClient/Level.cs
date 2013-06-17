@@ -17,7 +17,9 @@ namespace CombatCarsWinformsClient
         TextureManager _textureManager;
         ScrollingBackground _background;
         ScrollingBackground _backgroundLayer;
-        List<Enemy> _enemyList = new List<Enemy>();
+        BulletManager _bulletManager = new BulletManager(new System.Drawing.RectangleF(-1300 / 2, -750 / 2, 1300, 750));
+        EffectsManager _effectsManager;
+        EnemyManager _enemyManager;
 
         public Level(Input input, TextureManager textureManager, PersistentGameData gameData)
         {
@@ -26,24 +28,33 @@ namespace CombatCarsWinformsClient
             _gameData = gameData;
 
             _background = new ScrollingBackground(textureManager.Get(EnumTexture.BackGround));
-            //_background.SetScale(2, 2);
+            _background.SetScale(2, 2);
             _background.Speed = 0.15f;
 
             _backgroundLayer = new ScrollingBackground(textureManager.Get(EnumTexture.Planet));
             //_background.SetScale(2, 2);
             _backgroundLayer.Speed = 0.007f;
 
-            _enemyList.Add(new Enemy(_textureManager));
-            _playerCharacter = new PlayerCharacter(_textureManager);
+            _playerCharacter = new PlayerCharacter(_textureManager, _bulletManager);
+
+            _effectsManager = new EffectsManager(_textureManager);
+            _enemyManager = new EnemyManager(_textureManager, _effectsManager, _bulletManager, _playerCharacter, -1300);
         }
 
-        public void Update(double elapsedTime)
+        public void Update(double elapsedTime, double gameTime)
         {
+            _effectsManager.Update(elapsedTime);
             UpdateCollisions();
+            _bulletManager.Update(elapsedTime);
             _background.Update((float)elapsedTime);
             _backgroundLayer.Update((float)elapsedTime);
-            _enemyList.ForEach(x => x.Update(elapsedTime));
+            _enemyManager.Update(elapsedTime, gameTime);
+            _playerCharacter.Update(elapsedTime);
+            UpdateInput(elapsedTime);
+        }
 
+        private void UpdateInput(double elapsedTime)
+        {
             Vector controlInput = new Vector(0, 0, 0);
 
             if (_input.Keyboard.IsKeyHeld(Keys.Left))
@@ -66,18 +77,27 @@ namespace CombatCarsWinformsClient
                 controlInput.Y = -1;
             }
 
+            if (_input.Keyboard.IsKeyHeld(Keys.Space))
+            {
+                _playerCharacter.Fire();
+            }
+
             _playerCharacter.Move(controlInput * elapsedTime);
         }
 
         private void UpdateCollisions()
         {
-            foreach (Enemy enemy in _enemyList)
+            _bulletManager.UpdatePlayerCollisions(_playerCharacter);
+
+            foreach (Enemy enemy in _enemyManager.EnemyList)
             {
                 if (enemy.GetBoundingBox().IntersectsWith(_playerCharacter.GetBoundingBox()))
                 {
                     enemy.OnCollision(_playerCharacter);
                     _playerCharacter.OnCollision(enemy);
                 }
+
+                _bulletManager.UpdateEnemyCollisions(enemy);
             }
         }
 
@@ -85,8 +105,15 @@ namespace CombatCarsWinformsClient
         {
             _background.Render(renderer);
             _backgroundLayer.Render(renderer);
+
+            _enemyManager.Render(renderer);
+            //renderer.Render();
             _playerCharacter.Render(renderer);
-            _enemyList.ForEach(x => x.Render(renderer));
+            //renderer.Render();
+            _bulletManager.Render(renderer);
+            _effectsManager.Render(renderer);
+            renderer.Render();
+
         }
 
         public bool HasPlayerDied()

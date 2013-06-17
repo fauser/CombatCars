@@ -75,10 +75,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bullet.cs" />
+    <Compile Include="BulletManager.cs" />
+    <Compile Include="EffectsManager.cs" />
     <Compile Include="Enemy.cs" />
+    <Compile Include="EnemyDef.cs" />
+    <Compile Include="EnemyManager.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="EnumEnemyType.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="LevelDescription.cs" />
+    <Compile Include="Path.cs" />
     <Compile Include="PersistentGameData.cs" />
     <Compile Include="FramesPerScond.cs" />
     <Compile Include="MainForm.cs">
@@ -107,6 +114,9 @@
     <Compile Include="State\TweenState.cs" />
     <Compile Include="State\WaveFormGraphState.cs" />
     <Content Include="Image\background.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\bullet_yellow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Image\kspaceduel.png">
@@ -153,6 +163,9 @@
     </Content>
     <Content Include="Font\Calibri40_0.tga">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\explode.tga">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

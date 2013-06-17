@@ -7,8 +7,8 @@
     <ProjectGuid>{A8BAD259-87CE-49BC-8845-C3213F94A973}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CombatCarsWinFormsClientEngine</RootNamespace>
-    <AssemblyName>CombatCarsWinFormsClientEngine</AssemblyName>
+    <RootNamespace>GenericGameEngine</RootNamespace>
+    <AssemblyName>GenericGameEngine</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimatedSprite.cs" />
     <Compile Include="Batch.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="CharacterData.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Sound.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="SoundSource.cs" />
+    <Compile Include="Spline.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="StateSystem.cs" />
     <Compile Include="Text.cs" />

@@ -14,6 +14,8 @@ namespace GenericGameEngine
         PlayerShip,
         BackGround,
         Planet,
-        Enemy
+        Enemy,
+        Bullet,
+        Explosion
     }
 }

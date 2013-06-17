@@ -36,5 +36,10 @@ namespace CombatCarsWinformsClient
             Gl.glEnd();
             Gl.glEnable(Gl.GL_TEXTURE_2D);
         }
+
+        public void SetScale(double x, double y)
+        {
+            _sprite.SetScale(x, y);
+        }
     }
 }
