@@ -25,6 +25,7 @@ namespace CombatCarsWinformsClient
         GenericGameEngine.Font _titleFont;
         GenericGameEngine.Font _generalFont;
         PersistentGameData _persistandData = new PersistentGameData();
+        CombatCarsGameData _gameData = new CombatCarsGameData();
 
         public MainForm()
         {
@@ -68,21 +69,30 @@ namespace CombatCarsWinformsClient
             //_system.AddState(EnumState.Splash, new SplashScreenState(_system));
             //_system.AddState(EnumState.Title, new TitleMenuState());
             //_system.AddState(EnumState.Spritetest, new DrawSpriteState(_textureManager));
-            //_system.AddState(EnumState.FPS, new FPSState(_textureManager, _generalFont));
-            //_system.AddState(EnumState.Wave, new WaveFormGraphState());
+            _system.AddState(EnumState.FPS, new FPSState(_textureManager, _generalFont));
+            _system.AddState(EnumState.Wave, new WaveFormGraphState());
             //_system.AddState(EnumState.SpecialEffect, new SpecialEffectState(_textureManager, _generalFont));
             //_system.AddState(EnumState.CircleIntersection, new CircleIntersectionState(_input));
             //_system.AddState(EnumState.RectangleIntersection, new RectangleIntersectionState(_input));
-            //_system.AddState(EnumState.Tween, new TweenState(_textureManager));
+            _system.AddState(EnumState.Tween, new TweenState(_textureManager));
             //_system.AddState(EnumState.Matrix, new MatrixState(_textureManager));
             //_system.AddState(EnumState.Sound, new SoundState(_soundManager));
-            //_system.AddState(EnumState.Input, new InputState(_input));
+            _system.AddState(EnumState.Input, new InputState(_input));
 
             _system.AddState(EnumState.StartMenu, new StartMenuState(_system, _input, _generalFont, _titleFont));
             _system.AddState(EnumState.InnerGame, new InnerGameState(_system, _input, _textureManager, _persistandData, _generalFont));
             _system.AddState(EnumState.GameOver, new GameOverState(_system, _input, _persistandData, _generalFont, _titleFont));
 
-            _system.ChangeState(EnumState.StartMenu);
+            _gameData = GetDataFromServer();
+
+            _system.AddState(EnumState.CombatCars, new CombatCarsState(_system, _input, _textureManager, _openGLControl, _gameData));
+
+            _system.ChangeState(EnumState.CombatCars);
+        }
+
+        private CombatCarsGameData GetDataFromServer()
+        {
+            return new CombatCarsGameData() { NumberOfdotsX = 18, NumberOfdotsY = 11 };
         }
 
         private void InitializeTextures()
@@ -102,6 +112,8 @@ namespace CombatCarsWinformsClient
             _textureManager.LoadTexture(EnumTexture.Enemy, @"Image\kspaceduel.png");
             _textureManager.LoadTexture(EnumTexture.Bullet, @"Image\bullet_yellow.png");
             _textureManager.LoadTexture(EnumTexture.Explosion, @"Image\explode.tga");
+            _textureManager.LoadTexture(EnumTexture.Forest1x1, @"Image\Forest1x1.png");
+            _textureManager.LoadTexture(EnumTexture.House1x2_1, @"Image\House1x2_1.png");
         }
 
         private void InitializeDisplay()
@@ -125,6 +137,10 @@ namespace CombatCarsWinformsClient
             base.OnClientSizeChanged(e);
             Gl.glViewport(0, 0, this.ClientSize.Width, this.ClientSize.Height);
             Setup2DGraphics(ClientSize.Width, ClientSize.Height);
+            if (_system != null)
+            {
+                _system.OnClientSizeChanged(e);
+            }
         }
 
         private void Setup2DGraphics(double width, double height)

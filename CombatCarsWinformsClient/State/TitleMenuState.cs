@@ -38,5 +38,9 @@ namespace CombatCarsWinformsClient.State
             Gl.glEnd();
             Gl.glFinish();
         }
+
+        void IGameObject.OnClientSizeChanged(EventArgs e)
+        {
+        }
     }
 }

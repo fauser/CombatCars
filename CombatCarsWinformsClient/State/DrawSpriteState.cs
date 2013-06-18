@@ -42,5 +42,9 @@ namespace CombatCarsWinformsClient.State
                 _renderer.DrawSprite(_testSprite2);
             }
         }
+
+        void IGameObject.OnClientSizeChanged(EventArgs e)
+        {
+        }
     }
 }

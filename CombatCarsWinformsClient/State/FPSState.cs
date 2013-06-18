@@ -44,5 +44,9 @@ namespace CombatCarsWinformsClient.State
                 _renderer.DrawText(_fpsText2);
             }
         }
+
+        void IGameObject.OnClientSizeChanged(EventArgs e)
+        {
+        }
     }
 }

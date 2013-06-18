@@ -68,5 +68,9 @@ namespace CombatCarsWinformsClient.State
             Gl.glClear(Gl.GL_COLOR_BUFFER_BIT);
             _level.Render(_renderer);
         }
+
+        void IGameObject.OnClientSizeChanged(EventArgs e)
+        {
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace GenericGameEngine
         Input,
         StartMenu,
         InnerGame,
-        GameOver
+        GameOver,
+        CombatCars
     }
 }

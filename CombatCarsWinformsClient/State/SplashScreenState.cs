@@ -33,5 +33,9 @@ namespace CombatCarsWinformsClient.State
             Gl.glClear(Gl.GL_COLOR_BUFFER_BIT);
             Gl.glFinish();
         }
+    
+        void IGameObject.OnClientSizeChanged(EventArgs e)
+        {
+        }
     }
 }

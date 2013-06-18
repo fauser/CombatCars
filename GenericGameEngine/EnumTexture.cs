@@ -16,6 +16,8 @@ namespace GenericGameEngine
         Planet,
         Enemy,
         Bullet,
-        Explosion
+        Explosion,
+        Forest1x1,
+        House1x2_1
     }
 }

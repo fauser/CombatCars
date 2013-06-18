@@ -78,5 +78,9 @@ namespace CombatCarsWinformsClient.State
             }
             Gl.glEnd();
         }
+
+        void IGameObject.OnClientSizeChanged(EventArgs e)
+        {
+        }
     }
 }

@@ -85,5 +85,9 @@ namespace CombatCarsWinformsClient.State
             }
             , new Color(0.5f, 0.5f, 1, 1));
         }
+
+        void IGameObject.OnClientSizeChanged(EventArgs e)
+        {
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace GenericGameEngine
     {
         void Update(double elapsedTime);
         void Render();
+        void OnClientSizeChanged(EventArgs e);
     }
 }

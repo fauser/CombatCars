@@ -99,6 +99,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScrollingBackground.cs" />
     <Compile Include="State\CircleIntersectionState.cs" />
+    <Compile Include="CombatCarsGameData.cs" />
+    <Compile Include="State\CombatCarsState.cs" />
     <Compile Include="State\DrawSpriteState.cs" />
     <Compile Include="State\FPSState.cs" />
     <Compile Include="State\GameOverState.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="State\SpecialEffectState.cs" />
     <Compile Include="State\SplashScreenState.cs" />
     <Compile Include="State\StartMenuState.cs" />
+    <Compile Include="TerrainManager.cs" />
     <Compile Include="State\TitleMenuState.cs" />
     <Compile Include="State\TweenState.cs" />
     <Compile Include="State\WaveFormGraphState.cs" />
@@ -118,6 +121,12 @@
     </Content>
     <Content Include="Image\bullet_yellow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\Forest1x1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\House1x2_1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Image\kspaceduel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

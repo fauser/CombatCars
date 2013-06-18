@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace GenericGameEngine
 {
@@ -41,6 +42,14 @@ namespace GenericGameEngine
         public bool Exists(EnumState stateId)
         {
             return _stateStore.ContainsKey(stateId);
+        }
+
+        public void OnClientSizeChanged(EventArgs e)
+        {
+            if (_currentState != null)
+            {
+                _currentState.OnClientSizeChanged(e);
+            }
         }
     }
 }

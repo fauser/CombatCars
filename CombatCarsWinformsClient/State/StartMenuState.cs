@@ -60,5 +60,9 @@ namespace CombatCarsWinformsClient.State
             _menu.Render(_renderer);
             _renderer.Render();
         }
+
+        void IGameObject.OnClientSizeChanged(EventArgs e)
+        {
+        }
     }
 }
