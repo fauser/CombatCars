@@ -84,7 +84,7 @@ namespace CombatCarsWinformsClient
 
         internal void UpdatePlayerCollisions(PlayerCharacter playerCharacter)
         {
-            foreach (Bullet bullet in _bullets)
+            foreach (Bullet bullet in _enemyBullets)
             {
                 if (bullet.GetBoundingBox().IntersectsWith(playerCharacter.GetBoundingBox()))
                 {
