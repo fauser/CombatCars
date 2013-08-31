@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombatCarConsoleClient", "CombatCarConsoleClient\CombatCarConsoleClient.csproj", "{0769FBA7-1899-4E8C-93F2-D509E802E664}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombatCarsWinformsClient", "CombatCarsWinformsClient\CombatCarsWinformsClient.csproj", "{E05E766E-6F9A-4A57-9DFE-5D9443937DC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericGameEngine", "GenericGameEngine\GenericGameEngine.csproj", "{A8BAD259-87CE-49BC-8845-C3213F94A973}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombatCarsTestClient", "CombatCarsTestClient\CombatCarsTestClient.csproj", "{8106E20C-EF78-4D8C-A659-CEFA0727ED48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0769FBA7-1899-4E8C-93F2-D509E802E664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0769FBA7-1899-4E8C-93F2-D509E802E664}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0769FBA7-1899-4E8C-93F2-D509E802E664}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0769FBA7-1899-4E8C-93F2-D509E802E664}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E05E766E-6F9A-4A57-9DFE-5D9443937DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E05E766E-6F9A-4A57-9DFE-5D9443937DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E05E766E-6F9A-4A57-9DFE-5D9443937DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E05E766E-6F9A-4A57-9DFE-5D9443937DC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8BAD259-87CE-49BC-8845-C3213F94A973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8BAD259-87CE-49BC-8845-C3213F94A973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8BAD259-87CE-49BC-8845-C3213F94A973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8BAD259-87CE-49BC-8845-C3213F94A973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8106E20C-EF78-4D8C-A659-CEFA0727ED48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8106E20C-EF78-4D8C-A659-CEFA0727ED48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8106E20C-EF78-4D8C-A659-CEFA0727ED48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8106E20C-EF78-4D8C-A659-CEFA0727ED48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

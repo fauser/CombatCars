@@ -111,7 +111,6 @@ namespace GenericGameEngine
 
         public void SetPosition(Vector position)
         {
-            //InitVertexPositions(position, GetWidth(), GetHeight());
             Matrix m = new Matrix();
             m.SetTranslation(new Vector(_positionX, _positionY, 0));
             ApplyMatrix(m.Inverse());
@@ -155,6 +154,11 @@ namespace GenericGameEngine
 
             SetPosition(oldX, oldY);
             _rotation = rotation;
+        }
+
+        public double GetRotation()
+        {
+            return _rotation;
         }
 
         public void SetColor(Color color)

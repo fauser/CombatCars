@@ -7,7 +7,6 @@ namespace GenericGameEngine.Input
 {
     public class Input
     {
-        public GenericGameEngine.Point MousePosition { get; set; }
         public Mouse Mouse { get; set; }
         public Keyboard Keyboard { get; set; }
 

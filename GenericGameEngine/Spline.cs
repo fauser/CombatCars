@@ -50,6 +50,18 @@ namespace GenericGameEngine
             return CalculateCatmullRom(scaledT, _points[p0], _points[p1], _points[p2], _points[p3]);
         }
 
+        public double GetRotationOnLine(double t)
+        {
+            int interval = (int)(t / _segmentSize);
+
+            int p0 = LimitPoints(interval - 1);
+            int p1 = LimitPoints(interval);
+            int p2 = LimitPoints(interval + 1);
+            int p3 = LimitPoints(interval + 2);
+
+            return -Math.Atan2(_points[p2].X - _points[p1].X, _points[p2].Y - _points[p1].Y); ;
+        }
+
         private Vector CalculateCatmullRom(double t, Vector vector1, Vector vector2, Vector vector3, Vector vector4)
         {
             double t2 = t * t;

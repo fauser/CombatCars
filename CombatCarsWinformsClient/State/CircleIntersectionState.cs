@@ -23,7 +23,7 @@ namespace CombatCarsWinformsClient.State
 
         void IGameObject.Update(double elapsedTime)
         {
-            if (_circle.Intersects(_input.MousePosition))
+            if (_circle.Intersects(_input.Mouse.Position))
             {
                 _circle.Color = new Color(1, 0, 0, 1);
             }
@@ -42,7 +42,7 @@ namespace CombatCarsWinformsClient.State
             Gl.glPointSize(5);
             Gl.glBegin(Gl.GL_POINTS);
             {
-                Gl.glVertex2f(_input.MousePosition.X, _input.MousePosition.Y);
+                Gl.glVertex2f(_input.Mouse.Position.X, _input.Mouse.Position.Y);
             }
             Gl.glEnd();
         }

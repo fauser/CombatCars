@@ -1,10 +1,75 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="fauser7_combatcars" Class="CombatCarsAPIModelDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=msdb6.surftown.se;Initial Catalog=fauser7_combatcars;Persist Security Info=True;User ID=fauser7_combatcars" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="fauser7_combatcarsConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="fauser7_combatcars.Game" Member="Games">
+    <Type Name="Game">
+      <Column Name="GameId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Turn" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PlayerToAct" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Game_GameBoard" Member="GameBoards" ThisKey="GameId" OtherKey="GameId" Type="GameBoard" />
+      <Association Name="Game_GamePlayer" Member="GamePlayers" ThisKey="GameId" OtherKey="GameId" Type="GamePlayer" />
+    </Type>
+  </Table>
+  <Table Name="fauser7_combatcars.Vehicle" Member="Vehicles">
+    <Type Name="Vehicle">
+      <Column Name="VehicleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MaximumSpeed" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Vehicle_UserVehicle" Member="UserVehicles" ThisKey="VehicleId" OtherKey="VehicleId" Type="UserVehicle" />
+    </Type>
+  </Table>
+  <Table Name="fauser7_combatcars.GameBoard" Member="GameBoards">
+    <Type Name="GameBoard">
+      <Column Name="GameId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BoardRow" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BoardColumn" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TerrainId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Game_GameBoard" Member="Game" ThisKey="GameId" OtherKey="GameId" Type="Game" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="fauser7_combatcars.GamePlayer" Member="GamePlayers">
+    <Type Name="GamePlayer">
+      <Column Name="GameId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PlayerId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Game_GamePlayer" Member="Game" ThisKey="GameId" OtherKey="GameId" Type="Game" IsForeignKey="true" />
+      <Association Name="Player_GamePlayer" Member="Player" ThisKey="PlayerId" OtherKey="PlayerId" Type="Player" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="fauser7_combatcars.Player" Member="Players">
+    <Type Name="Player">
+      <Column Name="PlayerId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VehicleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Player_GamePlayer" Member="GamePlayers" ThisKey="PlayerId" OtherKey="PlayerId" Type="GamePlayer" />
+      <Association Name="Player_PlayerVehicle" Member="PlayerVehicles" ThisKey="PlayerId" OtherKey="PlayerId" Type="PlayerVehicle" />
+      <Association Name="User_Player" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="fauser7_combatcars.PlayerVehicle" Member="PlayerVehicles">
+    <Type Name="PlayerVehicle">
+      <Column Name="PlayerVehicleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PlayerId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MaximumSpeed" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Player_PlayerVehicle" Member="Player" ThisKey="PlayerId" OtherKey="PlayerId" Type="Player" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="fauser7_combatcars.Token" Member="Tokens">
+    <Type Name="Token">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TokenString" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Issued" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ValidTo" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User_Token" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="fauser7_combatcars.[User]" Member="Users">
     <Type Name="User">
       <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="User_Player" Member="Players" ThisKey="UserId" OtherKey="UserId" Type="Player" />
+      <Association Name="User_Token" Member="Token" ThisKey="UserId" OtherKey="UserId" Type="Token" Cardinality="One" />
       <Association Name="User_UserVehicle" Member="UserVehicles" ThisKey="UserId" OtherKey="UserId" Type="UserVehicle" />
     </Type>
   </Table>
@@ -14,24 +79,6 @@
       <Column Name="VehicleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="User_UserVehicle" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
       <Association Name="Vehicle_UserVehicle" Member="Vehicle" ThisKey="VehicleId" OtherKey="VehicleId" Type="Vehicle" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="fauser7_combatcars.Token" Member="Tokens">
-    <Type Name="Token">
-      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TokenString" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Issued" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="ValidTo" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="fauser7_combatcars.Vehicle" Member="Vehicles">
-    <Type Name="Vehicle">
-      <Column Name="VehicleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="OriginalMaximumSpeed" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MaximumSpeed" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CurrentSpeed" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Vehicle_UserVehicle" Member="UserVehicles" ThisKey="VehicleId" OtherKey="VehicleId" Type="UserVehicle" />
     </Type>
   </Table>
 </Database>

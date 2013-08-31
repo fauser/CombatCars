@@ -8,17 +8,20 @@ using Tao.OpenGl;
 
 namespace CombatCarsWinformsClient
 {
-    class Entity
+    public class Entity
     {
+        public Sprite Sprite { get { return _sprite; } }
+
         protected Sprite _sprite = new Sprite();
 
         public RectangleF GetBoundingBox()
         {
             float width = (float)(_sprite.Texture.Width * _sprite.ScaleX);
             float height = (float)(_sprite.Texture.Height * _sprite.ScaleY);
-            return new RectangleF((float)_sprite.GetPosition().X - width / 2,
+            RectangleF ds = new RectangleF((float)_sprite.GetPosition().X - width / 2,
                 (float)_sprite.GetPosition().Y - height / 2,
                 width, height);
+            return ds;
         }
 
         public void Render_Debug()
@@ -35,11 +38,6 @@ namespace CombatCarsWinformsClient
             }
             Gl.glEnd();
             Gl.glEnable(Gl.GL_TEXTURE_2D);
-        }
-
-        public void SetScale(double x, double y)
-        {
-            _sprite.SetScale(x, y);
         }
     }
 }

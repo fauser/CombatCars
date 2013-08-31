@@ -18,6 +18,8 @@ namespace GenericGameEngine
         Bullet,
         Explosion,
         Forest1x1,
-        House1x2_1
+        House1x2_1,
+        House2x1_1,
+        Car1
     }
 }

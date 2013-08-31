@@ -17,11 +17,11 @@ namespace CombatCarsWinformsClient.State
         TextureManager _textrureManager;
         CombatCarsGameData _gameData;
         Control _openGLControl;
-        List<float> _xes = new List<float>();
-        List<float> _ys = new List<float>();
-        float _delta;
-
         TerrainManager _terrainManager;
+        GameCoordinates _gameCoordinates;
+        CarManager _carManager;
+        int _timesClicked = 0;
+        List<Vector> _pathPoints;
 
         public CombatCarsState(StateSystem system, Input input, TextureManager textureManager, Control openGlControl, CombatCarsGameData gameData)
         {
@@ -30,12 +30,41 @@ namespace CombatCarsWinformsClient.State
             _textrureManager = textureManager;
             _openGLControl = openGlControl;
             _gameData = gameData;
-            GenerateCoordinates();
-            _terrainManager = new TerrainManager(textureManager);
 
-            _terrainManager.AddTerrain(EnumTexture.Forest1x1, new Vector(_xes[0], _ys[2], 0), _delta, _delta, 0);
-            _terrainManager.AddTerrain(EnumTexture.Forest1x1, new Vector(_xes[5], _ys[5], 0), _delta, _delta, 0);
-            _terrainManager.AddTerrain(EnumTexture.House1x2_1, new Vector(_xes[7], _ys[7], 0), _delta, _delta * 2, Math.PI * 0.5);
+            _gameCoordinates = new GameCoordinates(openGlControl, gameData);
+
+            _terrainManager = new TerrainManager(textureManager) { GameCoordinates = _gameCoordinates };
+
+            _terrainManager.AddTerrain(new Terrain(_textrureManager.Get(EnumTexture.House1x2_1), 1, 2, 7, 7), _gameCoordinates);
+            _terrainManager.AddTerrain(new Terrain(_textrureManager.Get(EnumTexture.House2x1_1), 2, 1, 10, 9), _gameCoordinates);
+            _terrainManager.AddTerrain(new Terrain(_textrureManager.Get(EnumTexture.Forest1x1), 1, 1, 4, 4), _gameCoordinates);
+
+            _carManager = new CarManager(_textrureManager) { GameCoordinates = _gameCoordinates };
+
+            Car c = new Car(_textrureManager.Get(EnumTexture.Car1), 3, 8);
+
+            double ds = Math.Max(c.Sprite.GetWidth(), _gameCoordinates._delta) - Math.Min(c.Sprite.GetWidth(), _gameCoordinates._delta);
+
+
+
+
+            c.Sprite.SetScale(_gameCoordinates._delta / c.Sprite.GetWidth() / 2, _gameCoordinates._delta / c.Sprite.GetHeight());
+
+            List<Vector> pathPoints = new List<Vector>();
+            pathPoints.Add(new Vector(_gameCoordinates._xes[0], _gameCoordinates._ys[0], 0));
+            pathPoints.Add(new Vector(_gameCoordinates._xes[1], _gameCoordinates._ys[1], 0));
+            pathPoints.Add(new Vector(_gameCoordinates._xes[0], _gameCoordinates._ys[2], 0));
+
+            pathPoints.Add(new Vector(_gameCoordinates._xes[4], _gameCoordinates._ys[4], 0));
+
+
+
+
+            c.Path = new Path(pathPoints, 10);
+
+            c.Sprite.SetRotation(Math.PI * 0.5f);
+
+            _carManager.AddTerrain(c);
         }
 
         void IGameObject.Update(double elapsedTime)
@@ -44,6 +73,31 @@ namespace CombatCarsWinformsClient.State
             {
                 System.Windows.Forms.Application.Exit();
             }
+
+            if (_input.Mouse.LeftPressed)
+            {
+                _timesClicked++;
+                if (_timesClicked == 1)
+                {
+                    _pathPoints = new List<Vector>();
+                    _pathPoints.Add(new Vector(_carManager.Cars[0].Sprite.GetPosition().X, _carManager.Cars[0].Sprite.GetPosition().Y, 0));
+                    _pathPoints.Add(new Vector(_input.Mouse.Position.X, _input.Mouse.Position.Y, 0));
+                }
+                else if (_timesClicked == 2)
+                {
+                    _pathPoints.Add(new Vector(_input.Mouse.Position.X, _input.Mouse.Position.Y, 0));
+                }
+                else
+                {
+                    _timesClicked = 0;
+                    _pathPoints.Add(new Vector(_input.Mouse.Position.X, _input.Mouse.Position.Y, 0));
+                    _carManager.Cars[0].Path = new Path(_pathPoints, 10);
+                }
+            }
+
+
+            _terrainManager.Update(elapsedTime);
+            _carManager.Update(elapsedTime);
         }
 
         void IGameObject.Render()
@@ -56,7 +110,9 @@ namespace CombatCarsWinformsClient.State
             DrawGameBoardStraightLines();
 
             Gl.glEnable(Gl.GL_TEXTURE_2D);
-            _terrainManager.Render(_renderer);
+            _terrainManager.Render(_renderer, _gameCoordinates);
+            _carManager.Render(_renderer, _gameCoordinates);
+
             _renderer.Render();
         }
 
@@ -65,16 +121,16 @@ namespace CombatCarsWinformsClient.State
             Gl.glLineWidth(2.0f);
             Gl.glBegin(Gl.GL_LINES);
             {
-                for (int x = 0; x < _xes.Count; x++)
+                for (int x = 0; x < _gameCoordinates._xes.Count; x++)
                 {
-                    Gl.glVertex2f(_xes[x], _ys[0] - _delta);
-                    Gl.glVertex2f(_xes[x], _ys[_gameData.NumberOfdotsY - 1] + _delta);
+                    Gl.glVertex2f(_gameCoordinates._xes[x], _gameCoordinates._ys[0] - _gameCoordinates._delta);
+                    Gl.glVertex2f(_gameCoordinates._xes[x], _gameCoordinates._ys[_gameData.NumberOfdotsY - 1] + _gameCoordinates._delta);
                 }
 
-                for (int y = 0; y < _ys.Count; y++)
+                for (int y = 0; y < _gameCoordinates._ys.Count; y++)
                 {
-                    Gl.glVertex2f(_xes[0] - _delta, _ys[y]);
-                    Gl.glVertex2f(_xes[_gameData.NumberOfdotsX - 1] + _delta, _ys[y]);
+                    Gl.glVertex2f(_gameCoordinates._xes[0] - _gameCoordinates._delta, _gameCoordinates._ys[y]);
+                    Gl.glVertex2f(_gameCoordinates._xes[_gameData.NumberOfdotsX - 1] + _gameCoordinates._delta, _gameCoordinates._ys[y]);
                 }
             }
             Gl.glEnd();
@@ -98,11 +154,11 @@ namespace CombatCarsWinformsClient.State
                 Gl.glVertex2f(_input.Mouse.Position.X, _input.Mouse.Position.Y);
 
                 Gl.glColor3f(0, 1, 0);
-                for (int x = 0; x < _xes.Count; x++)
+                for (int x = 0; x < _gameCoordinates._xes.Count; x++)
                 {
-                    for (int y = 0; y < _ys.Count; y++)
+                    for (int y = 0; y < _gameCoordinates._ys.Count; y++)
                     {
-                        Gl.glVertex2f(_xes[x], _ys[y]);
+                        Gl.glVertex2f(_gameCoordinates._xes[x], _gameCoordinates._ys[y]);
                     }
                 }
             }
@@ -111,32 +167,9 @@ namespace CombatCarsWinformsClient.State
 
         void IGameObject.OnClientSizeChanged(EventArgs e)
         {
-            GenerateCoordinates();
-        }
-
-        private void GenerateCoordinates()
-        {
-            _delta = Math.Min((float)_openGLControl.Width / _gameData.NumberOfdotsX, (float)_openGLControl.Height / _gameData.NumberOfdotsY);
-            float halfDelta = _delta / 2;
-
-            _xes = new List<float>();
-            _ys = new List<float>();
-
-            for (int x = 0; x < _gameData.NumberOfdotsX / 2; x++)
-            {
-                _xes.Add(halfDelta + _delta * x);
-                _xes.Add(-halfDelta - _delta * x);
-            }
-
-            _xes.Sort(delegate(float first, float second) { return first.CompareTo(second); });
-
-            _ys.Add(0);
-            for (int y = 1; y <= _gameData.NumberOfdotsY / 2; y++)
-            {
-                _ys.Add(_delta * y);
-                _ys.Add(-_delta * y);
-            }
-            _ys.Sort(delegate(float first, float second) { return first.CompareTo(second); });
+            _gameCoordinates.GenerateCoordinates();
+            _terrainManager.GameCoordinates = _gameCoordinates;
+            _carManager.GameCoordinates = _gameCoordinates;
         }
     }
 }

@@ -86,6 +86,7 @@
     <Compile Include="Spline.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="StateSystem.cs" />
+    <Compile Include="Terrain.cs" />
     <Compile Include="Text.cs" />
     <Compile Include="Texture.cs" />
     <Compile Include="TextureManager.cs" />

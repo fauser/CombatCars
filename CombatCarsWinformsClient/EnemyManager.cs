@@ -124,7 +124,7 @@ namespace CombatCarsWinformsClient
             }
             else
             {
-                System.Diagnostics.Debug.Assert(false, "Unknonw enemy type");
+                System.Diagnostics.Debug.Assert(false, "Unknown enemy type");
             }
 
             return enemy;

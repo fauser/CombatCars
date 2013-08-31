@@ -1,43 +1,115 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="CombatCarsAPIModel">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.875" name="CombatCarsAPIModel">
   <DataContextMoniker Name="/CombatCarsAPIModelDataContext" />
   <nestedChildShapes>
-    <classShape Id="62a7aa93-a988-4769-9502-95ba0f6a7a58" absoluteBounds="0.75, 3.75, 2, 1.3862939453125005">
-      <DataClassMoniker Name="/CombatCarsAPIModelDataContext/User" />
+    <classShape Id="da1dc9ae-1201-4497-85b1-f6109953b008" absoluteBounds="3.5, 0.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/CombatCarsAPIModelDataContext/Game" />
       <nestedChildShapes>
-        <elementListCompartment Id="3290f1ce-b1ab-480c-a1c8-6debd8592742" absoluteBounds="0.765, 4.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ead83dda-a447-4569-9d2c-d4fdfdeec335" absoluteBounds="3.515, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="1fe028c3-4931-44a4-bf39-68704b4a3bd0" absoluteBounds="3.5, 0.875, 2, 1.1939925130208335">
-      <DataClassMoniker Name="/CombatCarsAPIModelDataContext/UserVehicle" />
-      <nestedChildShapes>
-        <elementListCompartment Id="f6e012e6-6405-495d-8d3c-ddf3014a4cc8" absoluteBounds="3.515, 1.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(2.75 : 4.44314697265625); (4.5 : 4.44314697265625); (4.5 : 2.06899251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/CombatCarsAPIModelDataContext/User/User_UserVehicle" />
-      <nodes>
-        <classShapeMoniker Id="62a7aa93-a988-4769-9502-95ba0f6a7a58" />
-        <classShapeMoniker Id="1fe028c3-4931-44a4-bf39-68704b4a3bd0" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="5a951059-6a5a-410e-8106-f7b7020f69c7" absoluteBounds="6.25, 0.875, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/CombatCarsAPIModelDataContext/Token" />
-      <nestedChildShapes>
-        <elementListCompartment Id="03c67891-c967-43cb-9026-86f046c44500" absoluteBounds="6.265, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="c6a81c23-065b-47ae-93c2-d0215998f4d4" absoluteBounds="0.75, 0.875, 2, 1.7708968098958331">
+    <classShape Id="f1575e50-6270-43a1-a254-58bb403d7d42" absoluteBounds="0.75, 2, 2, 1.3862939453125005">
       <DataClassMoniker Name="/CombatCarsAPIModelDataContext/Vehicle" />
       <nestedChildShapes>
-        <elementListCompartment Id="83f7bec0-7098-402c-9ff0-dcf38be0b750" absoluteBounds="0.76500000000000012, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="9a552eb6-4f06-4683-9f15-d4acb5b6a53e" absoluteBounds="0.765, 2.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 1.47199625651042); (3.5 : 1.47199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="b6ef089a-c44f-421c-9781-afbeb643794a" absoluteBounds="6.25, 1.75, 2, 1.5785953776041668">
+      <DataClassMoniker Name="/CombatCarsAPIModelDataContext/GameBoard" />
+      <nestedChildShapes>
+        <elementListCompartment Id="50b73f2d-8347-4e60-abad-c81476369cc1" absoluteBounds="6.265, 2.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="661125ae-1c6a-4562-9ad0-6ddf00700d0d" absoluteBounds="6.25, 4.875, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/CombatCarsAPIModelDataContext/GamePlayer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="43df62a9-77ba-4012-a471-70b7f9122dcb" absoluteBounds="6.265, 5.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cce45343-1bec-49ec-9731-5f1237e1f30c" absoluteBounds="3.5, 5.625, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/CombatCarsAPIModelDataContext/Player" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e534e95f-849b-417a-b41a-28a0a484f2eb" absoluteBounds="3.515, 6.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4315e53d-08cb-4ddb-83a5-212901bbb8fb" absoluteBounds="6.25, 7.625, 2, 1.5785953776041648">
+      <DataClassMoniker Name="/CombatCarsAPIModelDataContext/PlayerVehicle" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dcc2af8c-01d4-47df-8d0e-3d536789a9b4" absoluteBounds="6.265, 8.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d6756171-3476-4b7a-91c9-d657210fa4fb" absoluteBounds="3.5, 8, 2, 1.5785953776041657">
+      <DataClassMoniker Name="/CombatCarsAPIModelDataContext/Token" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7a095df5-f07e-4dd9-8077-878174ad4425" absoluteBounds="3.515, 8.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4e36eabf-2650-4eb6-888a-7900177a545e" absoluteBounds="0.75, 5, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/CombatCarsAPIModelDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="de78ec0e-5ab4-4f41-9dea-612c954c216e" absoluteBounds="0.765, 5.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b33ce068-1c5d-4446-bd5a-d350613a49ff" absoluteBounds="3.5, 3.125, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/CombatCarsAPIModelDataContext/UserVehicle" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2531f6c8-e9f3-4f6d-a316-63d7a05bab53" absoluteBounds="3.515, 3.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 1.94314697265625); (6.25 : 1.94314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CombatCarsAPIModelDataContext/Game/Game_GameBoard" />
+      <nodes>
+        <classShapeMoniker Id="da1dc9ae-1201-4497-85b1-f6109953b008" />
+        <classShapeMoniker Id="b6ef089a-c44f-421c-9781-afbeb643794a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 2.1362939453125); (5.875 : 2.5112939453125); (5.875 : 5.47199625651042); (6.25 : 5.47199625651042)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CombatCarsAPIModelDataContext/Game/Game_GamePlayer" />
+      <nodes>
+        <classShapeMoniker Id="da1dc9ae-1201-4497-85b1-f6109953b008" />
+        <classShapeMoniker Id="661125ae-1c6a-4562-9ad0-6ddf00700d0d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 5.84699625651042); (6.25 : 5.84699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CombatCarsAPIModelDataContext/Player/Player_GamePlayer" />
+      <nodes>
+        <classShapeMoniker Id="cce45343-1bec-49ec-9731-5f1237e1f30c" />
+        <classShapeMoniker Id="661125ae-1c6a-4562-9ad0-6ddf00700d0d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 7.20359537760417); (5.875 : 7.57859537760417); (5.875 : 7.25); (6.25 : 7.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CombatCarsAPIModelDataContext/Player/Player_PlayerVehicle" />
+      <nodes>
+        <classShapeMoniker Id="cce45343-1bec-49ec-9731-5f1237e1f30c" />
+        <classShapeMoniker Id="4315e53d-08cb-4ddb-83a5-212901bbb8fb" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 6.00564697265625); (3.5 : 6.00564697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CombatCarsAPIModelDataContext/User/User_Player" />
+      <nodes>
+        <classShapeMoniker Id="4e36eabf-2650-4eb6-888a-7900177a545e" />
+        <classShapeMoniker Id="cce45343-1bec-49ec-9731-5f1237e1f30c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 6.3862939453125); (1.75 : 8.78929768880208); (3.5 : 8.78929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CombatCarsAPIModelDataContext/User/User_Token" />
+      <nodes>
+        <classShapeMoniker Id="4e36eabf-2650-4eb6-888a-7900177a545e" />
+        <classShapeMoniker Id="d6756171-3476-4b7a-91c9-d657210fa4fb" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 5); (3.125 : 4.625); (3.125 : 4.69490996880008); (3.50091745577925 : 4.31899251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CombatCarsAPIModelDataContext/User/User_UserVehicle" />
+      <nodes>
+        <classShapeMoniker Id="4e36eabf-2650-4eb6-888a-7900177a545e" />
+        <classShapeMoniker Id="b33ce068-1c5d-4446-bd5a-d350613a49ff" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 3.25564697265625); (3.5 : 3.25564697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CombatCarsAPIModelDataContext/Vehicle/Vehicle_UserVehicle" />
       <nodes>
-        <classShapeMoniker Id="c6a81c23-065b-47ae-93c2-d0215998f4d4" />
-        <classShapeMoniker Id="1fe028c3-4931-44a4-bf39-68704b4a3bd0" />
+        <classShapeMoniker Id="f1575e50-6270-43a1-a254-58bb403d7d42" />
+        <classShapeMoniker Id="b33ce068-1c5d-4446-bd5a-d350613a49ff" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>
