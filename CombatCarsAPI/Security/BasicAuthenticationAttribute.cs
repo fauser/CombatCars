@@ -32,12 +32,12 @@ namespace CombatCarsAPI.Security
                                  where u.Username == username && u.Password == password
                                  select u).FirstOrDefault();
 
-                    Token token = (from t in repository.Tokens
-                                   where t.UserId == user.UserId
-                                   select t).FirstOrDefault();
-
                     if (user != null)
                     {
+                        Token token = (from t in repository.Tokens
+                                       where t.UserId == user.UserId
+                                       select t).FirstOrDefault();
+
                         if (token != null)
                         {
                             TokenHandler.SetNewLeaseTime(repository, token);
